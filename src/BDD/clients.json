@@ -1,0 +1,165 @@
+{
+  "usuarios": [
+    {
+      "id": 4,
+      "name": "Bruce Springteen",
+      "username": "bspring",
+      "email": "bspring@kory.org",
+      "address": {
+        "street": "Calle America",
+        "suite": "Apt. 692",
+        "city": "Boston",
+        "zipcode": "53919-4257",
+        "geo": {
+          "lat": "29.4572",
+          "lng": "-164.2990"
+        }
+      },
+      "phone": "653566356",
+      "website": "theboss.biz",
+      "company": {
+        "name": "Rock Live",
+        "catchPhrase": "Memento Vivire",
+        "bs": "urban"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Patti Smith",
+      "username": "psmith",
+      "email": "psmith@annie.ca",
+      "address": {
+        "street": "Calle Romero",
+        "suite": "Suite 351",
+        "city": "Sevilla",
+        "zipcode": "33263",
+        "geo": {
+          "lat": "-31.8129",
+          "lng": "62.5342"
+        }
+      },
+      "phone": "625495489",
+      "website": "patti.info",
+      "company": {
+        "name": "Hippie",
+        "catchPhrase": "mundo flowers",
+        "bs": "revolutionize"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Rosendo",
+      "username": "rosendo",
+      "email": "rosendo@vallecas.org",
+      "address": {
+        "street": "Vallecas",
+        "suite": "Apt. 950",
+        "city": "Vallecas",
+        "zipcode": "23505",
+        "geo": {
+          "lat": "-71.4197",
+          "lng": "71.7478"
+        }
+      },
+      "phone": "669666430",
+      "website": "rosendo.org",
+      "company": {
+        "name": "rock spain",
+        "catchPhrase": "vive la vida",
+        "bs": "debares"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Kurt Corbain",
+      "username": "kcorbain",
+      "email": "kcorbain@billy.biz",
+      "address": {
+        "street": "Calle Romil",
+        "suite": "Suite 280",
+        "city": "Vigo",
+        "zipcode": "36269",
+        "geo": {
+          "lat": "24.8918",
+          "lng": "21.8984"
+        }
+      },
+      "phone": "636366132",
+      "website": "curbain.io",
+      "company": {
+        "name": "Nirvana",
+        "catchPhrase": "Configurable multimedia rock",
+        "bs": "generate music"
+      }
+    },
+    {
+      "id": 8,
+      "name": "Elvis Presley",
+      "username": "epresley",
+      "email": "elvis@mond.me",
+      "address": {
+        "street": "Wonderland Street",
+        "suite": "Suite 729",
+        "city": "Memphis",
+        "zipcode": "45169",
+        "geo": {
+          "lat": "-14.3990",
+          "lng": "-120.7677"
+        }
+      },
+      "phone": "658693943",
+      "website": "elvis.com",
+      "company": {
+        "name": "R&R",
+        "catchPhrase": "Implemented jail",
+        "bs": "body in movement"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Eric Burdon",
+      "username": "ericb",
+      "email": "ericb@dana.io",
+      "address": {
+        "street": "Dayna Park",
+        "suite": "Suite 449",
+        "city": "Dublin",
+        "zipcode": "76495",
+        "geo": {
+          "lat": "24.6463",
+          "lng": "-168.8889"
+        }
+      },
+      "phone": "63636506",
+      "website": "burdon.com",
+      "company": {
+        "name": "Animals",
+        "catchPhrase": "Switchable groups",
+        "bs": "sunny house"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Mick Jagger",
+      "username": "mjagger",
+      "email": "mjagg@erkarina.biz",
+      "address": {
+        "street": "Kattie Turnpike",
+        "suite": "Suite 198",
+        "city": "Londres",
+        "zipcode": "31428-2261",
+        "geo": {
+          "lat": "-38.2386",
+          "lng": "57.2232"
+        }
+      },
+      "phone": "656483804",
+      "website": "mick.net",
+      "company": {
+        "name": "Rolling Stone",
+        "catchPhrase": "Ethernal group",
+        "bs": "inmortal"
+      }
+    }
+  ]
+}
