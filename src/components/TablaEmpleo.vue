@@ -30,15 +30,13 @@
 
           <!-- Categoría y Modalidad -->
           <div class="input-group-text mb-3">
-            <span class="input-group-text custom-span me-2">Categoria: </span>
-            <select class="input-group-text custom-span me-2" name="categoria" id="categoria" v-model="candidato.categoria">
-              <option value="" disabled selected>Categoria</option>
-              <option value="ventas">Ventas</option>
-              <option value="compras">Compras</option>
-              <option value="it">IT</option>
-              <option value="logistica">Logistica</option>
-              <option value="juridico">Juridico</option>
-            </select>
+            <span class="input-group-text custom-span me-2">Departamentos: </span>
+            <select name="departamento" class="form-control sm w-25" v-model="candidato.departamento">
+            <option value="">Departamentos</option>
+            <option v-for="departamento in departamentos" :key="departamento.id" :value="departamento">
+              {{ departamento.nm }}
+            </option>
+          </select>
             <span class="input-group-text custom-span ms-auto me-2">Remoto: </span>  
             <input class="mx-4" type="radio" name="modalidad" id="modalidad" value="remoto" v-model="candidato.modalidad">
             <label for="remoto">Remoto</label>
@@ -82,9 +80,14 @@
           categoria: '',
           modalidad: ''
         },
-        candidatos: []
+        candidatos: [],
+        departamentos: []
   
       };
+    },
+    mounted() {
+      this.getDepartamentos();
+
     },
   
     methods: {
@@ -119,7 +122,7 @@
       async grabarcandidato() {
         console.error("Esta tirando")
   
-        if (this.candidato.apellidos && this.candidato.nombre && this.candidato.email && this.candidato.movil && this.candidato.categoria && this.candidato.modalidad) {
+        if (this.candidato.apellidos && this.candidato.nombre && this.candidato.email && this.candidato.movil && this.candidato.departamento && this.candidato.modalidad) {
           try {
   
   
@@ -156,6 +159,19 @@
   
   
       },
+
+
+    async getDepartamentos() {
+      try {
+        const response = await fetch('http://localhost:3000/departamentos');
+        if (!response.ok) {
+          throw new Error('Error en la solicitud:' + response.statusText);
+        }
+        this.departamentos = await response.json();
+      } catch (error) {
+        console.error(error);
+      }
+    },
       async prueba() {
   
       },

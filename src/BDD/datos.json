@@ -33126,6 +33126,41 @@
       "movil": "789876543",
       "categoria": "ventas",
       "modalidad": "remoto"
+    },
+    {
+      "id": "fe9c",
+      "apellidos": "Sanchez",
+      "nombre": "Manué",
+      "email": "manue@gmail.com",
+      "movil": "647323389",
+      "categoria": "",
+      "modalidad": "presencial",
+      "departamento": {
+        "id": "01",
+        "nm": "Ventas"
+      }
+    }
+  ],
+  "departamentos": [
+    {
+      "id": "01",
+      "nm": "Ventas"
+    },
+    {
+      "id": "02",
+      "nm": "Compras"
+    },
+    {
+      "id": "03",
+      "nm": "IT"
+    },
+    {
+      "id": "04",
+      "nm": "Logística"
+    },
+    {
+      "id": "05",
+      "nm": "Jurídico"
     }
   ]
 }

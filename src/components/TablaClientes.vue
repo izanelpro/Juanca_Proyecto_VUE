@@ -11,6 +11,8 @@
           <input type="text" class="form-control sm w-25" placeholder="DNI-NIE" v-model="cliente.dni"
             @blur="validarDNI(this.cliente.dni)" :disabled="editDni">
 
+          <button class="btn btn-primary m-1" @click.prevent="buscarDNI(this.cliente.dni)"><i class="bi bi-search"></i></button>
+
           <span class="input-group-text custom-span ms-auto me-2">Fecha Alta:</span>
           <input type="date" class="form-control sm w-25" placeholder="Fecha Alta" v-model="cliente.alta">
           <button class="input-group-text custom-span m-2 bg-primary text-light"><i
@@ -111,7 +113,7 @@
             </button>
             <span class="mx-3 align-self-center">Página {{ currentPage }}</span>
 
-            <button class="btn btn-primary" :disabled="currentPage * perPage >= clientes.length"
+            <button class="btn btn-secondary" :disabled="currentPage * perPage >= filtroClientes.length"
               @click="siguientePagina">
               <i class="bi bi-chevron-right"></i>
             </button>
@@ -206,6 +208,44 @@ export default {
       }
     },
 
+    async buscarDNI(dni) {
+      try {
+        this.limpiarFormCli()
+        const response = await fetch('http://localhost:3000/clientes');
+        if (!response.ok) {
+          throw new Error('Error en la solicitud: ' + response.statusText);
+        }
+        const clientes = await response.json();
+
+        // Encontrar el cliente por su DNI
+        const clienteEncontrado = clientes.find(c => c.dni === dni);
+
+
+        if (clienteEncontrado) {
+          // Convertir la fecha de alta al formato dd/mm/yyyy
+          // Asignar el objeto completo de provincia y municipio
+          if (this.cliente.provincia) {
+            this.cliente.provincia = this.provincias.find(p => p.nm === this.cliente.provincia).nm;
+            if (this.cliente.provincia) {
+              console.log("Provincia encontrada", this.cliente.provincia);
+
+            }
+          }
+
+          this.cliente = { ...clienteEncontrado };
+          this.editDni = true;
+          console.log("Cliente encontrado", this.cliente.municipio);
+          if (this.cliente.alta) {
+            this.cliente.alta = this.cliente.alta.split('T')[0];  // Para asegurarse de que la fecha esté en formato YYYY-MM-DD
+          }
+        } else {
+          this.mostrarAlerta('Error', 'Ese cliente no existe.', 'error');
+        }
+      } catch (error) {
+        console.error(error);
+        this.mostrarAlerta('Error', 'No se pudo cargar el cliente desde el servidor.', 'error');
+      }
+    },
     async seleccionaCliente(cliente) {
       try {
         this.limpiarFormCli()
@@ -502,5 +542,13 @@ export default {
 .custom-date-input {
   width: 12em;
   text-align: center;
+}
+.btn-primary:hover{
+  color: white;
+  border: 1px solid rgb(20, 122, 255);
+  background-color: rgb(0, 57, 172);
+}
+.btn-warning:hover{
+  background-color: rgb(255, 166, 0);
 }
 </style>
