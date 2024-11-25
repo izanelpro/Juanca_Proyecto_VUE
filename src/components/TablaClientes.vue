@@ -59,9 +59,15 @@
 
         </div>
       </div>
-      <button class="btn btn-primary m-1" @click.prevent="grabarcliente">Alta</button>
-      <button class="btn btn-primary m-1" @click.prevent="modificarcliente">Modificar</button>
-      <button class="btn btn-primary m-1" @click.prevent="eliminarcliente">Eliminar</button>
+      <button class="btn btn-primary m-1 btn-hover1" @click.prevent="grabarcliente">
+        <i class="bi bi-arrow-up-square mr-2"></i> Alta
+      </button>
+      <button class="btn btn-primary m-1 btn-hover2" @click.prevent="modificarcliente">
+        <i class="bi bi-pencil mr-2"></i>Modificar
+      </button>
+      <button class="btn btn-primary m-1 btn-hover3" @click.prevent="eliminarcliente">
+        <i class="bi bi-trash3 mr-2"></i>Eliminar
+      </button>
     </form>
   </div>
 
@@ -550,5 +556,20 @@ export default {
 }
 .btn-warning:hover{
   background-color: rgb(255, 166, 0);
+}
+.btn-hover1:hover{
+  background-color: rgb(0, 167, 0);
+  color:white;
+  border: 1px solid rgb(0, 99, 0);
+}
+.btn-hover2:hover{
+  background-color: rgb(207, 159, 0);
+  color:white;
+  border: 1px solid rgb(122, 94, 0);
+}
+.btn-hover3:hover{
+  background-color: rgb(167, 0, 0);
+  color:white;
+  border: 1px solid rgb(99, 0, 0);
 }
 </style>

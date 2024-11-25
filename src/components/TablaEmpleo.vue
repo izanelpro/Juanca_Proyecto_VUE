@@ -50,7 +50,12 @@
           <div class="input-group-text mb-3">
             <span class="input-group-text custom-span me-2">CV(PDF): </span>
             <input type="file" class="form-control sm w-50">
+            <!-- Aceptar politica  -->
+            <input type="checkbox" class="input-group-text custom-span me-2" id="ckeckbox">
+            <label for="checkbox">Acepto las condiciones y términos de la <router-link to="/avisoLegal">Política de Privacidad</router-link></label>
           </div>
+
+          
         </div>
 
         <!-- Submit -->

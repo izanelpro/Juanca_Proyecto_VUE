@@ -33116,7 +33116,8 @@
       "email": "test@test.com",
       "movil": "699986214",
       "categoria": "ventas",
-      "modalidad": "remoto"
+      "modalidad": "remoto",
+      "avisolegal":"si"
     },
     {
       "id": "b9f0",
@@ -33125,7 +33126,8 @@
       "email": "elpapu@gmail.com",
       "movil": "789876543",
       "categoria": "ventas",
-      "modalidad": "remoto"
+      "modalidad": "remoto",
+      "avisolegal":"si"
     },
     {
       "id": "fe9c",
@@ -33135,6 +33137,7 @@
       "movil": "647323389",
       "categoria": "",
       "modalidad": "presencial",
+      "avisolegal":"si",
       "departamento": {
         "id": "01",
         "nm": "Ventas"
