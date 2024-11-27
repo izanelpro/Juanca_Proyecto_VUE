@@ -32707,7 +32707,7 @@
       "nm": "Melilla"
     }
   ],
-  "clientes": [
+  "usuarios": [
     {
       "id": "b4a2",
       "dni": "53974821P",
@@ -32725,7 +32725,8 @@
         "nm": "Vigo"
       },
       "baja": "",
-      "telefono": "698745123"
+      "telefono": "698745123",
+      "tipo": "usuario"
     },
     {
       "id": "072a",
@@ -32744,7 +32745,9 @@
         "id": "28079",
         "nm": "Madrid"
       },
-      "baja": ""
+      "baja": "",
+      "tipo": "usuario"
+      
     },
     {
       "id": "073b",
@@ -32763,7 +32766,8 @@
         "id": "08904",
         "nm": "Badia del Vallès"
       },
-      "baja": ""
+      "baja": "",
+      "tipo": "usuario"
     },
     {
       "id": "074c",
@@ -32782,7 +32786,8 @@
         "id": "41091",
         "nm": "Sevilla"
       },
-      "baja": ""
+      "baja": "",
+      "tipo": "usuario"
     },
     {
       "id": "075d",
@@ -32801,7 +32806,8 @@
         "id": "29067",
         "nm": "Málaga"
       },
-      "baja": ""
+      "baja": "",
+      "tipo": "usuario"
     },
     {
       "id": "076e",
@@ -32820,7 +32826,8 @@
         "id": "46250",
         "nm": "Valencia"
       },
-      "baja": ""
+      "baja": "",
+      "tipo": "usuario"
     },
     {
       "id": "077f",
@@ -32839,7 +32846,8 @@
         "id": "03063",
         "nm": "Elche"
       },
-      "baja": ""
+      "baja": "",
+      "tipo": "usuario"
     },
     {
       "id": "078g",
@@ -32858,7 +32866,8 @@
         "id": "15030",
         "nm": "Ferrol"
       },
-      "baja": ""
+      "baja": "",
+      "tipo": "usuario"
     },
     {
       "id": "079h",
@@ -32877,7 +32886,8 @@
         "id": "48020",
         "nm": "Bilbao"
       },
-      "baja": ""
+      "baja": "",
+      "tipo": "usuario"
     },
     {
       "id": "080i",
@@ -32896,7 +32906,8 @@
         "id": "11027",
         "nm": "Jerez de la Frontera"
       },
-      "baja": ""
+      "baja": "",
+      "tipo": "usuario"
     },
     {
       "id": "081j",
@@ -32915,7 +32926,8 @@
         "id": "43148",
         "nm": "Reus"
       },
-      "baja": ""
+      "baja": "",
+      "tipo": "usuario"
     },
     {
       "id": "082k",
@@ -32934,7 +32946,8 @@
         "id": "21041",
         "nm": "Huelva"
       },
-      "baja": ""
+      "baja": "",
+      "tipo": "usuario"
     },
     {
       "id": "083l",
@@ -32953,7 +32966,8 @@
         "id": "33024",
         "nm": "Gijón"
       },
-      "baja": ""
+      "baja": "",
+      "tipo": "usuario"
     },
     {
       "id": "084m",
@@ -32972,7 +32986,8 @@
         "id": "39075",
         "nm": "Santander"
       },
-      "baja": ""
+      "baja": "",
+      "tipo": "usuario"
     },
     {
       "id": "085n",
@@ -32991,7 +33006,8 @@
         "id": "50297",
         "nm": "Zaragoza"
       },
-      "baja": ""
+      "baja": "",
+      "tipo": "usuario"
     },
     {
       "id": "086o",
@@ -33010,7 +33026,8 @@
         "id": "13903",
         "nm": "Arenales de San Gregorio"
       },
-      "baja": ""
+      "baja": "",
+      "tipo": "usuario"
     },
     {
       "id": "087p",
@@ -33029,7 +33046,8 @@
         "id": "18179",
         "nm": "Granada"
       },
-      "baja": ""
+      "baja": "",
+      "tipo": "usuario"
     },
     {
       "id": "088q",
@@ -33048,7 +33066,8 @@
         "id": "40001",
         "nm": "Abades"
       },
-      "baja": ""
+      "baja": "",
+      "tipo": "usuario"
     },
     {
       "id": "089r",
@@ -33067,7 +33086,8 @@
         "id": "34120",
         "nm": "Palencia"
       },
-      "baja": ""
+      "baja": "",
+      "tipo": "usuario"
     },
     {
       "id": "090s",
@@ -33086,7 +33106,8 @@
         "id": "25120",
         "nm": "Lleida"
       },
-      "baja": ""
+      "baja": "",
+      "tipo": "usuario"
     },
     {
       "id": "091t",
@@ -33105,7 +33126,48 @@
         "id": "07040",
         "nm": "Palma de Mallorca"
       },
-      "baja": ""
+      "baja": "",
+      "tipo": "usuario"
+    },
+    {
+      "id": "6bfd",
+      "dni": "54233709P",
+      "alta": "",
+      "apellidos": "Ramirez",
+      "nombre": "Pepito",
+      "direccion": "Vigo",
+      "email": "pepito@gmail.com",
+      "provincia": {
+        "id": "36",
+        "nm": "Pontevedra"
+      },
+      "municipio": {
+        "id": "36038",
+        "nm": "Pontevedra"
+      },
+      "baja": "",
+      "telefono": "606543477",
+      "tipo": "usuario"
+    },
+    {
+      "id": "4174",
+      "dni": "18525459V",
+      "alta": "2009-12-12",
+      "apellidos": "Izan",
+      "nombre": "Gay",
+      "direccion": "test",
+      "email": "test@test.com",
+      "provincia": {
+        "id": "04",
+        "nm": "Almería"
+      },
+      "municipio": {
+        "id": "04004",
+        "nm": "Albánchez"
+      },
+      "baja": "26/11/2024",
+      "telefono": "699986214",
+      "tipo": "usuario"
     }
   ],
   "candidatos": [
@@ -33117,7 +33179,7 @@
       "movil": "699986214",
       "categoria": "ventas",
       "modalidad": "remoto",
-      "avisolegal":"si"
+      "avisolegal": "si"
     },
     {
       "id": "b9f0",
@@ -33127,7 +33189,7 @@
       "movil": "789876543",
       "categoria": "ventas",
       "modalidad": "remoto",
-      "avisolegal":"si"
+      "avisolegal": "si"
     },
     {
       "id": "fe9c",
@@ -33137,10 +33199,119 @@
       "movil": "647323389",
       "categoria": "",
       "modalidad": "presencial",
-      "avisolegal":"si",
+      "avisolegal": "si",
       "departamento": {
         "id": "01",
         "nm": "Ventas"
+      }
+    },
+    {
+      "id": "93d3",
+      "apellidos": "García García",
+      "nombre": "Adrian",
+      "email": "adrigg@gmail.com",
+      "movil": "678905734",
+      "categoria": "",
+      "modalidad": "hibrido",
+      "departamento": {
+        "id": "03",
+        "nm": "IT"
+      }
+    },
+    {
+      "id": "5dd7",
+      "apellidos": "García García",
+      "nombre": "Adrian",
+      "email": "adrigg@gmail.com",
+      "movil": "678905734",
+      "categoria": "",
+      "modalidad": "hibrido",
+      "departamento": {
+        "id": "03",
+        "nm": "IT"
+      }
+    },
+    {
+      "id": "5d12",
+      "apellidos": "García García",
+      "nombre": "Adrian",
+      "email": "adrigg@gmail.com",
+      "movil": "678905734",
+      "categoria": "",
+      "modalidad": "hibrido",
+      "departamento": {
+        "id": "03",
+        "nm": "IT"
+      }
+    },
+    {
+      "id": "88ca",
+      "apellidos": "qwe",
+      "nombre": "qw",
+      "email": "qwe",
+      "movil": "699986214",
+      "categoria": "",
+      "modalidad": "hibrido",
+      "avisoLegal": true,
+      "departamento": {
+        "id": "02",
+        "nm": "Compras"
+      }
+    },
+    {
+      "id": "0cd5",
+      "apellidos": "qwe",
+      "nombre": "qw",
+      "email": "qwe",
+      "movil": "699986214",
+      "categoria": "",
+      "modalidad": "hibrido",
+      "avisoLegal": true,
+      "departamento": {
+        "id": "02",
+        "nm": "Compras"
+      }
+    },
+    {
+      "id": "bfe0",
+      "apellidos": "qwe",
+      "nombre": "qw",
+      "email": "qwe",
+      "movil": "699986214",
+      "categoria": "",
+      "modalidad": "hibrido",
+      "avisoLegal": true,
+      "departamento": {
+        "id": "03",
+        "nm": "IT"
+      }
+    },
+    {
+      "id": "bdd4",
+      "apellidos": "qwe",
+      "nombre": "qw",
+      "email": "qwe",
+      "movil": "699986214",
+      "categoria": "",
+      "modalidad": "hibrido",
+      "avisoLegal": true,
+      "departamento": {
+        "id": "03",
+        "nm": "IT"
+      }
+    },
+    {
+      "id": "4b8a",
+      "apellidos": "qwe",
+      "nombre": "qw",
+      "email": "qwe",
+      "movil": "699986214",
+      "categoria": "",
+      "modalidad": "hibrido",
+      "avisoLegal": true,
+      "departamento": {
+        "id": "03",
+        "nm": "IT"
       }
     }
   ],

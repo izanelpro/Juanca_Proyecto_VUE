@@ -13,8 +13,8 @@
                                 exact-active-class="active">Inicio</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link to="/clientes" class="nav-link text-white"
-                                exact-active-class="active">Clientes</router-link>
+                            <router-link to="/usuarios" class="nav-link text-white"
+                                exact-active-class="active">Usuarios</router-link>
                         </li>
                         <li class="nav-item">
                             <router-link to="/empleo" class="nav-link text-white"
