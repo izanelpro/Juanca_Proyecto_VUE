@@ -49,7 +49,7 @@
           <!--Comentarios-->
           <div class="input-group-text mb-3">
             <span class="input-group-text custom-span me-2">Comentarios: </span>
-            <textarea name="comentarios" id="comentarios" cols="130" rows="5"></textarea>
+            <textarea name="comentarios" id="comentarios" cols="130" rows="5" v-model="candidato.comentarios"></textarea>
           </div>
           <!-- CV -->
           <div class="input-group-text mb-3">
@@ -65,6 +65,66 @@
         <!-- Submit -->
         <button class="btn btn-primary m-1" @click.prevent="grabarcandidato">Alta</button>
       </form>
+    </div>
+
+
+
+    
+    <div class="container my-5">
+      <h2 class="mb-4">Lista de Datos de Candidatos</h2>
+      <div class="container my-2">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead class="table-info rounded-header">
+              <tr>
+                <th scope="col" class="w-20">Apellidos</th>
+                <th scope="col" class="w-20">Nombre</th>
+                <th scope="col" class="w-20 text-center">Email</th>
+                <th scope="col" class="w-10">Telefono</th>
+                <th scope="col" class="w-10 text-center">Departamento</th>
+                <th scope="col" class="w-10 text-center">Modalidad</th>
+                <th scope="col" class="pale-yellow table-warning">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="candidato in candidatoPorPagina" :key="candidato.id">
+                <td class="align-middle">{{ candidato.apellidos }}</td>
+                <td class="align-middle">{{ candidato.nombre }}</td>
+                <td class="align-middle">{{ candidato.email }}</td>
+                <td class="align-middle">{{ candidato.movil }}</td>
+                <td class="align-middle">{{ candidato.departamento.nm }}</td>
+
+
+                <td class="align-middle">{{ candidato.modalidad }}</td>
+                <td class="text-center align-middle pale-yellow table-warning">
+                  <div>
+                    <button class="btn btn-warning m-2" @click="selelccionarcandidato(candidato)">
+                      <i class="fas fa-pencil-alt"></i>
+                    </button>
+                    
+                    <button class="btn btn-danger m-2" @click="eliminarcandidato(candidato)">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="d-flex justify-content-center my-3">
+            <button class="btn btn-primary" :disable="currentPage === 1" @click.prevent="paginaAnterior">
+              <i class="bi bi-chevron-left"> </i>
+            </button>
+            <span class="mx-3 align-self-center">Página {{ currentPage }}</span>
+
+            <button class="btn btn-secondary" :disabled="currentPage * perPage >= this.candidatos.length"
+              @click.prevent="siguientePagina">
+              <i class="bi bi-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </template>
   
@@ -86,46 +146,247 @@
           nombre: '',
           email: '',
           movil: '',
-          categoria: '',
           modalidad: '',
-          avisoLegal: ''
+          avisoLegal: '',
+          comentarios:''
         },
         candidatos: [],
-        departamentos: []
+        departamentos: [],
+        currentPage: 1,
+        pageSize: 5,
   
       };
     },
+
     mounted() {
-      
+      this.getcandidatos();
+      this.getDepartamentos();
 
     },
-  
-    methods: {
-  
-      validarTelefono(telefono) {
-        if (telefono == '') {
-          this.mostrarAlerta('Error', 'El teléfono con formato no valido', 'error');
-        }
-        const regex = /^[67]\d{8}$/;
-        if (!regex.test(telefono)) {
-          this.mostrarAlerta('Error', 'El teléfono con formato no valido', 'error')
-        }
-      },
-      
+
+    computed: {
+    candidatoPorPagina() {
+      const candidatosFiltrados = this.candidatos;
+      const indiceInicial = (this.currentPage - 1) * this.pageSize;
+      return candidatosFiltrados.slice(indiceInicial, indiceInicial + this.pageSize)
     },
-    
+  },
+
+  methods: {
+    siguientePagina() {
+      if (this.currentPage * this.pageSize < this.candidatos.length) {
+        this.currentPage++;
+      }
+    },
+
+    paginaAnterior() {
+      if (this.currentPage > 1) {
+        this.currentPage--;
+      }
+    },
+
+    async selelccionarcandidato(candidato) {
+      try {
+        this.limpiarFormCli()
+        const response = await fetch('http://localhost:3000/candidatos');
+        if (!response.ok) {
+          throw new Error('Error en la solicitud: ' + response.statusText);
+        }
+        const candidatos = await response.json();
+
+        // Encontrar el candidato por su nmbre
+        const candidatoEncontrado = candidatos.find(c => c.nombre === candidato.nombre);
+
+
+        if (candidatoEncontrado) {
+          this.candidato = { ...candidatoEncontrado }
+        }
+      } catch (error) {
+        console.error(error);
+        this.mostrarAlerta('Error', 'No se pudo cargar el candidato desde el servidor.', 'error');
+      }
+    },
+
+
+    limpiarFormCli() {
+      this.candidato = {
+        pellidos: '',
+          nombre: '',
+          email: '',
+          movil: '',
+          modalidad: '',
+          avisoLegal: '',
+          comentarios:''
+        
+      }
+
+      this.editDni = false;
+    },
+    validarTelefono(movil) {
+      if (movil == '') {
+        this.mostrarAlerta('Error', 'El teléfono con formato no valido', 'error');
+      }
+      const regex = /^[67]\d{8}$/;
+      if (!regex.test(movil)) {
+        this.mostrarAlerta('Error', 'El teléfono con formato no valido', 'error')
+      }
+    },
+
+
+    async getcandidatos() {
+      try {
+        const response = await fetch('http://localhost:3000/candidatos');
+        if (!response.ok) {
+          throw new Error('Error en la solicitud:' + response.statusText);
+        }
+        this.candidatos = (await response.json()).sort((a, b) => a.apellidos.localeCompare(b.apellidos) || a.nombre.localeCompare(b.nombre));
+      } catch (error) {
+        console.error(error);
+      }
+    },
+
 
     mostrarAlerta(titulo, mensaje, icono) {
-        Swal.fire({
-          title: titulo,
-          text: mensaje,
-          icon: icono,
-          customClass: {
-            container: 'custom-alert-container',
-            popup: 'custom-alert-popup',
-            modal: 'custom-alert-modal'
+      Swal.fire({
+        title: titulo,
+        text: mensaje,
+        icon: icono,
+        customClass: {
+          container: 'custom-alert-container',
+          popup: 'custom-alert-popup',
+          modal: 'custom-alert-modal'
+        }
+      })
+    },
+
+    async grabarcandidato() {
+      // Verificar si los campos requeridos están llenos
+      if (this.candidato.apellidos && this.candidato.nombre && this.candidato.email && this.candidato.movil && this.candidato.modalidad && this.candidato.avisoLegal) {
+        try {
+          // Obtener los candidatos existentes
+          const response = await fetch('http://localhost:3000/candidatos');
+          if (!response.ok) {
+            throw new Error('Error al obtener los candidatos: ' + response.statusText);
           }
-        })
+
+          const candidatosExistentes = await response.json();
+
+          const candidatoExistente = candidatosExistentes.find(candidato => candidato.id === this.candidato.id);
+
+          if (candidatoExistente) {
+
+            const actualizarResponse = await fetch(`http://localhost:3000/candidatos/${candidatoExistente.id}`, {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(candidatoExistente),
+            });
+
+            if (!actualizarResponse.ok) {
+              throw new Error('Error al actualizar el candidato: ' + actualizarResponse.statusText);
+            }
+
+            this.mostrarAlerta('Aviso', 'candidato reactivado correctamente', 'success');
+            this.getcandidatos();
+          } else {
+            const crearResponse = await fetch('http://localhost:3000/candidatos', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(this.candidato),
+            });
+
+            if (!crearResponse.ok) {
+              throw new Error('Error al guardar el candidato: ' + crearResponse.statusText);
+            }
+
+            const nuevocandidato = await crearResponse.json();
+            this.candidatos.push(nuevocandidato);
+            this.mostrarAlerta('Aviso', 'candidato grabado correctamente', 'success');
+            this.getcandidatos();
+          }
+        } catch (error) {
+          console.error(error);
+          this.mostrarAlerta('Error', 'No se pudo grabar el candidato.', 'error');
+        }
+      } else {
+        this.mostrarAlerta('Error', 'Por favor, completa todos los campos requeridos.', 'error');
+      }
+    },
+
+    async eliminarcandidato(candidato) {
+      const resultado= await Swal.fire(
+        {
+          title:'Confirmacion',
+          html:`Seguro que desea eliminar a <strong>${candidato.nombre} ${candidato.apellidos}</strong> de la lista?`,
+          icon:'warning',
+          showCancelButton:true,
+          confirmButtonColor:'#d33',
+          cancelButtonColor:'rgb(0, 57, 172)',
+          confirmButtonText:'Si,eliminar',
+          cancelButtonText:'Cancelar'
+        }
+      )
+      if (!resultado.isConfirmed){
+        return;
+      }
+      try {
+        const response = await fetch("http://localhost:3000/candidatos");
+        if (!response.ok) {
+          throw new Error("Error en la solicitud: " + response.statusText);
+        }
+
+        const candidatos = await response.json();
+        const candidatoExistente = candidatos.find(c => c.id === candidato.id);
+
+        if (candidatoExistente) {
+          await fetch(`http://localhost:3000/candidatos/${candidatoExistente.id}`, { 
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+          },
+          });
+
+          this.mostrarAlerta("Aviso", "Candidato eliminado correctamente", "success");
+          this.getcandidatos(); // Actualiza la lista de candidatos
+
+        } else {
+          this.mostrarAlerta("Error", "Candidato no encontrado", "error");
+        }
+      } catch (error) {
+        console.error(error);
+        this.mostrarAlerta("Error", "No se pudo eliminar al candidato", "error");
+      }
+    },
+
+    async modificarcandidato() {
+      if (this.candidato.dni) {
+        try {
+
+
+          const response = await fetch(`http://localhost:3000/candidatos/${this.candidato.id}`, { // URL interpolada correctamente
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(this.candidato),
+          });
+
+
+          if (!response.ok) {
+            throw new Error('Error al modificar el candidato:' + response.statusText);
+          }
+          this.mostrarAlerta("Aviso", "candidato modificado correctamente", "success");
+          this.getcandidatos();
+
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+        this.mostrarAlerta('Error', 'Debe seleccionar un candidato para modificar', 'error')
+      }
     },
     
 
@@ -144,6 +405,7 @@
       async prueba() {
   
       },
+  }
   }
   
   </script>

@@ -33,12 +33,12 @@
           <input type="text" class="form-control sm w-50" placeholder="Dirección" v-model="usuario.direccion">
           <span class="input-group-text custom-span ms-2 me-2">Email: </span>
           <input type="email" class="form-control sm w-50" placeholder="Email" v-model="usuario.email">
-        </div>
-
-        <div class="input-group-text mb-3">
           <span class="input-group-text custom-span me-2">Teléfono:</span>
           <input class="form-control sm w-25" type="text" v-model="usuario.telefono"
             @blur="validarTelefono(this.usuario.telefono)">
+        </div>
+
+        <div class="input-group-text mb-3">
           <span class="input-group-text custom-span me-2 ms-2">Provincia: </span>
           <select name="provincia" class="form-control sm w-25" v-model="usuario.provincia">
             <option value="">Provincia</option>
@@ -53,7 +53,11 @@
               {{ municipio.nm }}
             </option>
           </select>
-
+          <span class="input-group-text custom-span me-2 ms-2">Tipo Usuario: </span>
+          <select name="provincia" class="form-control sm w-25" v-model="usuario.tipo">
+            <option value="usuario">Usuario</option>
+            <option value="admin">Admin</option>
+          </select>
           <input type="checkbox" class="m-2" name="historico" v-model="isChecked">
           <label for="bg input-group-text custom-span ms-2 me-2">Histórico</label>
 
@@ -78,7 +82,7 @@
 
   <div>
     <div class="container my-5">
-      <h2 class="mb-4">Lista de Datos</h2>
+      <h2 class="mb-4">Lista de Datos de Usuarios</h2>
       <div class="container my-2">
         <div class="table-responsive">
           <table class="table table-striped">

@@ -32713,7 +32713,7 @@
       "dni": "53974821P",
       "alta": "2024-11-13",
       "apellidos": "Gonzalez",
-      "nombre": "Esteban",
+      "nombre": "Estebomba",
       "direccion": "Calle Urzaiz, 8",
       "email": "esteban@gmail.com",
       "provincia": {
@@ -32747,7 +32747,6 @@
       },
       "baja": "",
       "tipo": "usuario"
-      
     },
     {
       "id": "073b",
@@ -33126,7 +33125,7 @@
         "id": "07040",
         "nm": "Palma de Mallorca"
       },
-      "baja": "",
+      "baja": "28/11/2024",
       "tipo": "usuario"
     },
     {
@@ -33177,19 +33176,12 @@
       "nombre": "test",
       "email": "test@test.com",
       "movil": "699986214",
-      "categoria": "ventas",
       "modalidad": "remoto",
-      "avisolegal": "si"
-    },
-    {
-      "id": "b9f0",
-      "apellidos": "diosito",
-      "nombre": "elpapu",
-      "email": "elpapu@gmail.com",
-      "movil": "789876543",
-      "categoria": "ventas",
-      "modalidad": "remoto",
-      "avisolegal": "si"
+      "avisoLegal": true,
+      "departamento": {
+        "id": "05",
+        "nm": "Jurídico"
+      }
     },
     {
       "id": "fe9c",
@@ -33197,51 +33189,11 @@
       "nombre": "Manué",
       "email": "manue@gmail.com",
       "movil": "647323389",
-      "categoria": "",
       "modalidad": "presencial",
-      "avisolegal": "si",
+      "avisoLegal": true,
       "departamento": {
         "id": "01",
         "nm": "Ventas"
-      }
-    },
-    {
-      "id": "93d3",
-      "apellidos": "García García",
-      "nombre": "Adrian",
-      "email": "adrigg@gmail.com",
-      "movil": "678905734",
-      "categoria": "",
-      "modalidad": "hibrido",
-      "departamento": {
-        "id": "03",
-        "nm": "IT"
-      }
-    },
-    {
-      "id": "5dd7",
-      "apellidos": "García García",
-      "nombre": "Adrian",
-      "email": "adrigg@gmail.com",
-      "movil": "678905734",
-      "categoria": "",
-      "modalidad": "hibrido",
-      "departamento": {
-        "id": "03",
-        "nm": "IT"
-      }
-    },
-    {
-      "id": "5d12",
-      "apellidos": "García García",
-      "nombre": "Adrian",
-      "email": "adrigg@gmail.com",
-      "movil": "678905734",
-      "categoria": "",
-      "modalidad": "hibrido",
-      "departamento": {
-        "id": "03",
-        "nm": "IT"
       }
     },
     {
@@ -33250,7 +33202,6 @@
       "nombre": "qw",
       "email": "qwe",
       "movil": "699986214",
-      "categoria": "",
       "modalidad": "hibrido",
       "avisoLegal": true,
       "departamento": {
@@ -33259,59 +33210,115 @@
       }
     },
     {
-      "id": "0cd5",
-      "apellidos": "qwe",
-      "nombre": "qw",
-      "email": "qwe",
-      "movil": "699986214",
-      "categoria": "",
-      "modalidad": "hibrido",
+      "id": "7dc4",
+      "apellidos": "McDonals",
+      "nombre": "Bobby",
+      "email": "bobby@gmail.com",
+      "movil": "675436278",
+      "modalidad": "remoto",
       "avisoLegal": true,
+      "comentarios": "",
+      "departamento": {
+        "id": "01",
+        "nm": "Ventas"
+      }
+    },
+    {
+      "id": "",
+      "apellidos": "Lamel",
+      "nombre": "Matip",
+      "email": "matip@gmail.com",
+      "movil": "654333789",
+      "modalidad": "remoto",
+      "avisoLegal": true,
+      "comentarios": "",
+      "departamento": {
+        "id": "04",
+        "nm": "Logística"
+      }
+    },
+    {
+      "id": "312c",
+      "apellidos": "test",
+      "nombre": "tests",
+      "email": "tests@test.com",
+      "movil": "623098445",
+      "modalidad": "remoto",
+      "avisoLegal": true,
+      "comentarios": "Aqui estoy",
+      "departamento": {
+        "id": "05",
+        "nm": "Jurídico"
+      }
+    },
+    {
+      "id": "b191",
+      "apellidos": "izanprueba",
+      "nombre": "iza",
+      "email": "hola@hola.com",
+      "movil": "699986214",
+      "modalidad": "remoto",
+      "avisoLegal": true,
+      "comentarios": "Okey",
+      "departamento": {
+        "id": "05",
+        "nm": "Jurídico"
+      }
+    },
+    {
+      "id": "523a",
+      "apellidos": "moro",
+      "nombre": "Max",
+      "email": "max@gmail.com",
+      "movil": "675884321",
+      "modalidad": "presencial",
+      "avisoLegal": true,
+      "comentarios": "VOLO",
+      "departamento": {
+        "id": "03",
+        "nm": "IT"
+      }
+    },
+    {
+      "id": "7738",
+      "apellidos": "Iglesias",
+      "nombre": "David",
+      "email": "david@gmail.com",
+      "movil": "674334527",
+      "modalidad": "remoto",
+      "avisoLegal": true,
+      "comentarios": "VOLO",
+      "departamento": {
+        "id": "01",
+        "nm": "Ventas"
+      }
+    },
+    {
+      "id": "cc83",
+      "apellidos": "Cuac",
+      "nombre": "Pato",
+      "email": "pato@gmail.com",
+      "movil": "654332789",
+      "modalidad": "remoto",
+      "avisoLegal": true,
+      "comentarios": "Cuac cuac",
       "departamento": {
         "id": "02",
         "nm": "Compras"
       }
     },
     {
-      "id": "bfe0",
-      "apellidos": "qwe",
-      "nombre": "qw",
-      "email": "qwe",
-      "movil": "699986214",
-      "categoria": "",
-      "modalidad": "hibrido",
+      "id": "63c3",
+      "apellidos": "Miau",
+      "nombre": "Gato",
+      "email": "gato@gmail.com",
+      "movil": "654890344",
+      "modalidad": "remoto",
       "avisoLegal": true,
+      "comentarios": "miau",
       "departamento": {
-        "id": "03",
-        "nm": "IT"
-      }
-    },
-    {
-      "id": "bdd4",
-      "apellidos": "qwe",
-      "nombre": "qw",
-      "email": "qwe",
-      "movil": "699986214",
-      "categoria": "",
-      "modalidad": "hibrido",
-      "avisoLegal": true,
-      "departamento": {
-        "id": "03",
-        "nm": "IT"
-      }
-    },
-    {
-      "id": "4b8a",
-      "apellidos": "qwe",
-      "nombre": "qw",
-      "email": "qwe",
-      "movil": "699986214",
-      "categoria": "",
-      "modalidad": "hibrido",
-      "avisoLegal": true,
-      "departamento": {
-        "id": "03",
-        "nm": "IT"
+        "id": "02",
+        "nm": "Compras"
       }
     }
   ],

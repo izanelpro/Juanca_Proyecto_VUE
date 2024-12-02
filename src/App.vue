@@ -1,11 +1,10 @@
 <template>
-  <div id="app" class="d-flex flex-column min-vh-180">
     <NavBar />
-    <main class="flex-grow-1">
+    <main class="d-flex flex-column min-vh-100">
+      <router-view />
     </main>
     
-  </div>
-  <router-view />
+
   <footer>
     <AppFooter />
   </footer>

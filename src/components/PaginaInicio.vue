@@ -39,4 +39,7 @@ export default {
  .botones-der{
     margin: 10px;
  }
+ .btn-hover1{
+    background-color: aqua;
+ }
 </style>
