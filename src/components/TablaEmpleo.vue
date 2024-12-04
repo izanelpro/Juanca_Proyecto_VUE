@@ -259,62 +259,70 @@
       })
     },
 
+    
     async grabarcandidato() {
-      // Verificar si los campos requeridos están llenos
-      if (this.candidato.apellidos && this.candidato.nombre && this.candidato.email && this.candidato.movil && this.candidato.modalidad && this.candidato.avisoLegal) {
-        try {
-          // Obtener los candidatos existentes
-          const response = await fetch('http://localhost:3000/candidatos');
-          if (!response.ok) {
-            throw new Error('Error al obtener los candidatos: ' + response.statusText);
-          }
-
-          const candidatosExistentes = await response.json();
-
-          const candidatoExistente = candidatosExistentes.find(candidato => candidato.id === this.candidato.id);
-
-          if (candidatoExistente) {
-
-            const actualizarResponse = await fetch(`http://localhost:3000/candidatos/${candidatoExistente.id}`, {
-              method: 'PUT',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(candidatoExistente),
-            });
-
-            if (!actualizarResponse.ok) {
-              throw new Error('Error al actualizar el candidato: ' + actualizarResponse.statusText);
-            }
-
-            this.mostrarAlerta('Aviso', 'candidato reactivado correctamente', 'success');
-            this.getcandidatos();
-          } else {
-            const crearResponse = await fetch('http://localhost:3000/candidatos', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(this.candidato),
-            });
-
-            if (!crearResponse.ok) {
-              throw new Error('Error al guardar el candidato: ' + crearResponse.statusText);
-            }
-
-            const nuevocandidato = await crearResponse.json();
-            this.candidatos.push(nuevocandidato);
-            this.mostrarAlerta('Aviso', 'candidato grabado correctamente', 'success');
-            this.getcandidatos();
-          }
-        } catch (error) {
-          console.error(error);
-          this.mostrarAlerta('Error', 'No se pudo grabar el candidato.', 'error');
+   // Verificar si los campos requeridos están llenos
+   if (this.candidato.apellidos && this.candidato.nombre && this.candidato.email && this.candidato.movil && this.candidato.modalidad && this.candidato.avisoLegal) {
+    const resultado= await Swal.fire(
+        {
+          title:'Confirmacion',
+          html:`Seguro que desea grabar al candidato a la lista?`,
+          icon:'warning',
+          showCancelButton:true,
+          confirmButtonColor:'#d33',
+          cancelButtonColor:'rgb(0, 57, 172)',
+          confirmButtonText:'Si,añadir',
+          cancelButtonText:'Cancelar'
         }
-      } else {
-        this.mostrarAlerta('Error', 'Por favor, completa todos los campos requeridos.', 'error');
+      )
+      if (!resultado.isConfirmed){
+        return;
       }
-    },
+     try {
+       if (this.candidato.id) {
+         // Si el candidato tiene un id, significa que estamos editando
+         const response = await fetch(`http://localhost:3000/candidatos/${this.candidato.id}`, {
+           method: 'PUT',
+           headers: {
+             'Content-Type': 'application/json',
+           },
+           body: JSON.stringify(this.candidato),
+         });
+
+         if (!response.ok) {
+           throw new Error('Error al actualizar el candidato: ' + response.statusText);
+         }
+
+         this.mostrarAlerta('Aviso', 'Candidato actualizado correctamente', 'success');
+       } else {
+         // Si no tiene id, creamos un nuevo candidato
+         const response = await fetch('http://localhost:3000/candidatos', {
+           method: 'POST',
+           headers: {
+             'Content-Type': 'application/json',
+           },
+           body: JSON.stringify(this.candidato),
+         });
+
+         if (!response.ok) {
+           throw new Error('Error al crear el candidato: ' + response.statusText);
+         }
+
+         this.mostrarAlerta('Aviso', 'Candidato creado correctamente', 'success');
+       }
+
+       // Actualizamos la lista de candidatos
+       this.getcandidatos();
+
+     } catch (error) {
+       console.error(error);
+       this.mostrarAlerta('Error', 'No se pudo grabar el candidato.', 'error');
+     }
+   } else {
+     this.mostrarAlerta('Error', 'Por favor, completa todos los campos requeridos.', 'error');
+   }
+  },
+ 
 
     async eliminarcandidato(candidato) {
       const resultado= await Swal.fire(
@@ -362,7 +370,7 @@
     },
 
     async modificarcandidato() {
-      if (this.candidato.dni) {
+      if (this.candidato.id) {
         try {
 
 

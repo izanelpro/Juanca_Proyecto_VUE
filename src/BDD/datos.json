@@ -33146,7 +33146,7 @@
       },
       "baja": "",
       "telefono": "606543477",
-      "tipo": "usuario"
+      "tipo": "admin"
     },
     {
       "id": "4174",
@@ -33247,22 +33247,8 @@
       "avisoLegal": true,
       "comentarios": "Aqui estoy",
       "departamento": {
-        "id": "05",
-        "nm": "Jurídico"
-      }
-    },
-    {
-      "id": "b191",
-      "apellidos": "izanprueba",
-      "nombre": "iza",
-      "email": "hola@hola.com",
-      "movil": "699986214",
-      "modalidad": "remoto",
-      "avisoLegal": true,
-      "comentarios": "Okey",
-      "departamento": {
-        "id": "05",
-        "nm": "Jurídico"
+        "id": "01",
+        "nm": "Ventas"
       }
     },
     {
@@ -33301,10 +33287,10 @@
       "movil": "654332789",
       "modalidad": "remoto",
       "avisoLegal": true,
-      "comentarios": "Cuac cuac",
+      "comentarios": "Cuac cuac  ",
       "departamento": {
-        "id": "02",
-        "nm": "Compras"
+        "id": "04",
+        "nm": "Logística"
       }
     },
     {
@@ -33316,6 +33302,20 @@
       "modalidad": "remoto",
       "avisoLegal": true,
       "comentarios": "miau",
+      "departamento": {
+        "id": "02",
+        "nm": "Compras"
+      }
+    },
+    {
+      "id": "7280",
+      "apellidos": "Messi",
+      "nombre": "Leo",
+      "email": "leo@gmail.com",
+      "movil": "675466587",
+      "modalidad": "hibrido",
+      "avisoLegal": true,
+      "comentarios": "Cristiano mierda",
       "departamento": {
         "id": "02",
         "nm": "Compras"
