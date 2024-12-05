@@ -33197,19 +33197,6 @@
       }
     },
     {
-      "id": "88ca",
-      "apellidos": "qwe",
-      "nombre": "qw",
-      "email": "qwe",
-      "movil": "699986214",
-      "modalidad": "hibrido",
-      "avisoLegal": true,
-      "departamento": {
-        "id": "02",
-        "nm": "Compras"
-      }
-    },
-    {
       "id": "7dc4",
       "apellidos": "McDonals",
       "nombre": "Bobby",
@@ -33221,20 +33208,6 @@
       "departamento": {
         "id": "01",
         "nm": "Ventas"
-      }
-    },
-    {
-      "id": "",
-      "apellidos": "Lamel",
-      "nombre": "Matip",
-      "email": "matip@gmail.com",
-      "movil": "654333789",
-      "modalidad": "remoto",
-      "avisoLegal": true,
-      "comentarios": "",
-      "departamento": {
-        "id": "04",
-        "nm": "Logística"
       }
     },
     {
@@ -33281,16 +33254,16 @@
     },
     {
       "id": "cc83",
-      "apellidos": "Cuac",
-      "nombre": "Pato",
-      "email": "pato@gmail.com",
-      "movil": "654332789",
-      "modalidad": "remoto",
+      "apellidos": "Jones",
+      "nombre": "Paco",
+      "email": "paco@gmail.com",
+      "movil": "654456009",
+      "modalidad": "presencial",
       "avisoLegal": true,
-      "comentarios": "Cuac cuac  ",
+      "comentarios": "Soy guapo  ",
       "departamento": {
-        "id": "04",
-        "nm": "Logística"
+        "id": "01",
+        "nm": "Ventas"
       }
     },
     {
