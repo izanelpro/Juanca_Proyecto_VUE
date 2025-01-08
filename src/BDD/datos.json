@@ -32976,7 +32976,7 @@
       "nombre": "Isabel",
       "direccion": "Paseo de Pereda, 9",
       "email": "isabelcastro@example.com",
-      "telefono": "677890123",
+      "telefono": "677890124",
       "provincia": {
         "id": "39",
         "nm": "Cantabria"
@@ -33211,20 +33211,6 @@
       }
     },
     {
-      "id": "312c",
-      "apellidos": "test",
-      "nombre": "tests",
-      "email": "tests@test.com",
-      "movil": "623098445",
-      "modalidad": "remoto",
-      "avisoLegal": true,
-      "comentarios": "Aqui estoy",
-      "departamento": {
-        "id": "01",
-        "nm": "Ventas"
-      }
-    },
-    {
       "id": "523a",
       "apellidos": "moro",
       "nombre": "Max",
@@ -33258,7 +33244,7 @@
       "nombre": "Paco",
       "email": "paco@gmail.com",
       "movil": "654456009",
-      "modalidad": "hibrido",
+      "modalidad": "presencial",
       "avisoLegal": true,
       "comentarios": "Soy guapo  ",
       "departamento": {
