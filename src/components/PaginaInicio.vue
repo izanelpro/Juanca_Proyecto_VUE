@@ -5,7 +5,7 @@
     <div class="botones">
         <div class="botones-iz">
             <router-link to="/usuarios"><button class="btn btn-primary m-1 btn-hover1">Gestión Usuarios</button></router-link><br>
-            <router-link to="/"><button class="btn btn-primary m-1 btn-hover2" disabled>En Construcción</button></router-link><br>
+            <router-link to="/comentarios"><button class="btn btn-primary m-1 btn-hover2">Gestion Comentarios</button></router-link><br>
             <router-link to="/"><button class="btn btn-primary m-1 btn-hover2" disabled>En Construcción</button></router-link>
         </div>
         <div class="botones-der">

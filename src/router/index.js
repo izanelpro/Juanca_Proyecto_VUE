@@ -5,6 +5,8 @@ import TablaContacto from '@/components/TablaContacto.vue'
 import TablaEmpleo from '@/components/TablaEmpleo.vue'
 import NotFound from '@/components/NotFound.vue'
 import AvisoLegal from '@/components/avisoLegal.vue'
+import TablaComentarios from '@/components/TablaComentarios.vue'
+import TablaArticulos from '@/components/TablaArticulos.vue'
 
 const routes = [
   {
@@ -31,6 +33,16 @@ const routes = [
     path: '/avisoLegal',
     name:'avisoLegal',
     component: AvisoLegal
+  },
+  {
+    path: '/articulos',
+    name:'articulos',
+    component: TablaArticulos
+  },
+  {
+    path: '/comentarios',
+    name:'TablaComentarios',
+    component: TablaComentarios
   },
   {
     path:'/:pathMatch(.*)*',

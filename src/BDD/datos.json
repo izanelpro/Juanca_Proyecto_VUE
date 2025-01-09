@@ -33279,6 +33279,20 @@
         "id": "02",
         "nm": "Compras"
       }
+    },
+    {
+      "id": "927a",
+      "apellidos": "a",
+      "nombre": "aaaa",
+      "email": "a@gmail.com",
+      "movil": "678906547",
+      "modalidad": "remoto",
+      "avisoLegal": true,
+      "comentarios": "",
+      "departamento": {
+        "id": "01",
+        "nm": "Ventas"
+      }
     }
   ],
   "departamentos": [
@@ -33301,6 +33315,128 @@
     {
       "id": "05",
       "nm": "Jurídico"
+    }
+  ],
+  "comentarios": [
+    {
+      "id": "49e8",
+      "fechaComentario": "",
+      "clienteEmail": "axel@gmail.com",
+      "clienteMovil": "675698009",
+      "lopd": true,
+      "clienteMensaje": "",
+      "clienteValor": 1
+    },
+    {
+      "id": "ac2e",
+      "fechaComentario": "",
+      "clienteEmail": "loco@gmail.com",
+      "clienteMovil": "675698009",
+      "lopd": true,
+      "clienteMensaje": "",
+      "clienteValor": 1
+    },
+    {
+      "id": "1386",
+      "fechaComentario": "",
+      "clienteEmail": "ave@gmail.com",
+      "clienteMovil": "677865489",
+      "lopd": true,
+      "clienteMensaje": "",
+      "clienteValor": 1
+    },
+    {
+      "id": "4dc8",
+      "fechaComentario": "",
+      "clienteEmail": "are@gmail.com",
+      "clienteMovil": "675456788",
+      "lopd": true,
+      "clienteMensaje": "",
+      "clienteValor": 1
+    },
+    {
+      "id": "8a4a",
+      "fechaComentario": "",
+      "clienteEmail": "eva@gmail.com",
+      "clienteMovil": "675467890",
+      "lopd": true,
+      "clienteMensaje": "",
+      "clienteValor": 1
+    },
+    {
+      "id": "7ed3",
+      "fechaComentario": "",
+      "clienteEmail": "wer",
+      "clienteMovil": "678905678",
+      "lopd": true,
+      "clienteMensaje": "",
+      "clienteValor": 1
+    },
+    {
+      "id": "513a",
+      "fechaComentario": "",
+      "clienteEmail": "r",
+      "clienteMovil": "654567889",
+      "lopd": true,
+      "clienteMensaje": "",
+      "clienteValor": 1
+    },
+    {
+      "id": "65bc",
+      "fechaComentario": "",
+      "clienteEmail": "jopjed",
+      "clienteMovil": "635298741",
+      "lopd": true,
+      "clienteMensaje": "",
+      "clienteValor": 1
+    },
+    {
+      "id": "c5bc",
+      "fechaComentario": "",
+      "clienteEmail": "35rtg",
+      "clienteMovil": "745893621",
+      "lopd": true,
+      "clienteMensaje": "",
+      "clienteValor": 5
+    }
+  ],
+  "articulos": [
+    {
+      "id": "12e8",
+      "nombre": "Lápiz",
+      "categoria": {
+        "id": "03",
+        "nm": "Ofimática"
+      },
+      "descripcion": "Gordo y grueso, perfevto para escribir",
+      "precio": 1,
+      "stock": 14,
+      "personalizacion": "",
+      "imagen": "",
+      "alta": "",
+      "fechaAlta": ""
+    }
+  ],
+  "categorias": [
+    {
+      "id": "01",
+      "nm": "Electrónica"
+    },
+    {
+      "id": "02",
+      "nm": "Hogar"
+    },
+    {
+      "id": "03",
+      "nm": "Ofimática"
+    },
+    {
+      "id": "04",
+      "nm": "Entretenimiento"
+    },
+    {
+      "id": "05",
+      "nm": "Juegos"
     }
   ]
 }

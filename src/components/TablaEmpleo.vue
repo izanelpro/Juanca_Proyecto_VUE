@@ -184,6 +184,7 @@
         this.currentPage--;
       }
     },
+    
 
     async selelccionarcandidato(candidato) {
       try {
@@ -210,7 +211,7 @@
 
     limpiarFormCli() {
       this.candidato = {
-        pellidos: '',
+          apellidos: '',
           nombre: '',
           email: '',
           movil: '',
