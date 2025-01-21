@@ -2,7 +2,7 @@
     <br>
 
     <div class="row">
-      <h5 class="text-center front-weight-bold">Trabaja con nosotros</h5>
+      <h5 class="font-weight-bold text-uppercase text-primary position-relative d-inline-block m-3">TRABAJA CON NOSOTROS<i class="bi bi-person-workspace m-2"></i></h5>
       <router-link to="/" class="btn btn-customb"><i class="bi bi-arrow-return-left me-2"></i></router-link>
     </div>
 

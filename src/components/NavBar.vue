@@ -35,8 +35,19 @@
                     </ul>
                     <input class="form-control me-4 w-25 ms-auto" type="search" placeholder="Buscar"
                         aria-label="Search">
+
                     <button class="btn btn-outline-success bg-light" type="submit"> <i
                             class="bi bi-search"></i></button>
+                            <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><router-link class="dropdown-item" to="/login">Acceso</router-link></li>
+                            <li><router-link class="dropdown-item" to="/registrarse">Registro</router-link></li>
+                        </ul>
+                    </div>
+                    
                 </div>
             </div>
         </nav>
@@ -58,4 +69,5 @@ export default {
     transition: font-size 0.5s ease;
     /* con una transición suave */
 }
+
 </style>

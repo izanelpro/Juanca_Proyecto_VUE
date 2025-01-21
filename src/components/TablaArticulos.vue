@@ -2,7 +2,7 @@
     <br>
     <div class="row">
       
-      <h5 class="text-center front-weight-bold">GESTIÓN DE ARTÍCULOS</h5>
+      <h5 class="font-weight-bold text-uppercase text-primary position-relative d-inline-block m-3">GESTIÓN DE ARTÍCULOS<i class="bi bi-star-fill m-2"></i></h5>
       <router-link to="/" class="btn btn-customb"><i class="bi bi-arrow-return-left me-2"></i></router-link>
     </div>
     <br>
@@ -20,41 +20,41 @@
                     <select name="departamento" class="form-control sm w-25" v-model="articulo.categoria">
                         <option value="">Seleccionar categoría</option>
                         <option v-for="categoria in categorias" :key="categoria.id" :value="categoria">
-                        {{ categoria.nm }}
+                        {{ categoria }}
                         </option>
                     </select>
                 </div>
                 <!--Comentarios y Precio por Unidad-->
                 <div class="input-group-text mb-3">
                     <span class="input-group-text custom-span me-2">Descripción: </span>
-                    <textarea name="descripcion" id="descripcion" cols="110" rows="3" placeholder="Descripcion de artículo" v-model="articulo.descripcion"></textarea>
+                    <textarea name="descripcion" id="descripcion" cols="70" rows="3" placeholder="Descripcion de artículo" v-model="articulo.descripcion"></textarea>
 
                     <span class="input-group-text custom-span me-2">Precio Unitario: </span>
-                    <input type="number" class="form-control sm w-50"  v-model="articulo.precio">
+                    <input type="number" class="form-control sm w-50"  v-model="articulo.precio_unitario">
                 </div>
 
                 <!--Stock y Personalización-->
                 <div class="input-group-text mb-3">
                     <span class="input-group-text custom-span me-2">Stock: </span>
-                    <input type="number" class="form-control sm w-50"  v-model="articulo.stock">
+                    <input type="number" class="form-control sm w-50"  v-model="articulo.stock_disponible">
 
                     <span class="input-group-text custom-span me-2">Personalización: </span>
-                    <textarea name="personalizacion" id="personalizacion" cols="110" rows="3" placeholder="Detalles de personalización" v-model="articulo.personalizacion"></textarea>
+                    <textarea name="personalizacion" id="personalizacion" cols="60" rows="3" placeholder="Detalles de personalización" v-model="articulo.personalizacion"></textarea>
                 </div>
 
                 <!--Imagen y ALta-->
                 <div class="input-group-text mb-3">
                     <span class="input-group-text custom-span me-2">Imagen URL: </span>
-                    <textarea name="descripcion" id="descripcion" cols="130" rows="1" v-model="articulo.imagen"></textarea>
+                    <textarea name="descripcion" id="descripcion" cols="60" rows="1" v-model="articulo.imagen"></textarea>
 
                     <span class="input-group-text custom-span ms-auto me-2">Fecha Alta:</span>
-                    <input type="date" class="form-control sm w-25" v-model="articulo.fechaAlta">
+                    <input type="date" class="form-control sm w-25" v-model="articulo.fecha_alta" >
                 </div>
             </div>
             
             <!--Grabar y Limpiar-->
-            <button class="btn btn-primary m-1" @click.prevent="grabararticulo">
-            <i class="bi bi-arrow-up-square mr-2"></i> Grabar
+            <button class="btn btn-primary m-1" @click="agregarArticulo">
+            <i class="bi bi-arrosw-up-square mr-2"></i> Grabar
             </button>
             <button class="btn btn-light m-1" @click="limpiarFormCli()">
             <i class="bi-arrow-clockwise"></i> Limpiar
@@ -62,6 +62,7 @@
         </form>
     </div>
   
+    <!--Tabla-->
     <div>
       <div class="container my-5">
         <h2 class="mb-4">TABLA DE ARTÍCULOS</h2>
@@ -81,21 +82,21 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="articulo in articuloPorPagina" :key="articulo.id">
-                  <td class="align-middle">{{ articulo.id }}</td>
+                <tr v-for="articulo in articuloPorPagina" :key="articulo._id">
+                  <td class="align-middle">{{ articulo._id.substring(0,4) }}</td>
                   <td class="align-middle">{{ articulo.nombre }}</td>
-                  <td class="align-middle">{{ articulo.categoria.nm }}</td>
+                  <td class="align-middle">{{ articulo.categoria }}</td>
                   <td class="align-middle">{{ articulo.descripcion }}</td>
-                  <td class="align-middle">{{ articulo.precio }}</td>
-                  <td class="align-middle">{{ articulo.stock }}</td>
-                  <td class="align-middle">{{ articulo.fechaAlta }}</td>
+                  <td class="align-middle">{{ articulo.precio_unitario }}</td>
+                  <td class="align-middle">{{ articulo.stock_disponible }}</td>
+                  <td class="align-middle">{{ new Intl.DateTimeFormat('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' }).format(Date.parse(articulo.fecha_alta)) }}</td>
                   <td class="text-center align-middle pale-yellow table-warning">
                     <div>
                       <button class="btn btn-warning m-2" @click="seleccionaarticulo(articulo)">
                         <i class="fas fa-pencil-alt"></i>
                       </button>
                       
-                      <button class="btn btn-danger m-2" @click="deletearticulo(articulo.dni)">
+                      <button class="btn btn-danger m-2" @click="eliminararticulo(articulo._id)">
                         <i class="bi bi-trash"></i>
                       </button>
                     
@@ -125,40 +126,43 @@
   </template>
   
   <script>
-  import Swal from 'sweetalert2';
-  
-  export default {
-    name: "Tabla-articulos",
-    components: {
-      
-    },
-  
-    data() {
-      return {
-  
-        articulo: {
-          nombre: '',
-          categoria: '',
-          descripcion: '',
-          precio: '',
-          stock: '',
-          personalizacion: '',
-          imagen: '',
-          alta: '',
-        },
-  
-        articulos: [],
-        categorias:[],
-        currentPage: 1,
-        pageSize: 5,
+  import Swal from 'sweetalert2'; // Importar SweetAlert2
+  import {agregarArticulo, obtenerArticulos, eliminarArticulo,actualizarArticulo} from '@/js/articuloServicios.js';
 
-      };
-    },
+export default {
+  name: "TablaArticulos",
+
+  data() {
+    return {
+      articulos: [],
+      articulo: {
+        nombre: '',
+        categoria: '',
+        descripcion: '',
+        precio_unitario: 0.00,
+        stock_disponible: 0,
+        personalizacion: '',
+        imagen: '',
+        fecha_alta: ''
+      },
+      
+      currentPage: 1,
+      pageSize: 5, //registros por página
+      categorias: [
+        'Electrónica',
+        'Hogar',
+        'Ofimática',
+        'Deporte',
+        'Libros',
+        'Otros'
+      ]
+    };
+  },
+
   
-    mounted() {
-      this.getarticulos();
-      this.getCategorias();
-    },
+  mounted() {
+    this.getarticulos();
+  },
   
   
     computed: {
@@ -189,18 +193,19 @@
           this.currentPage--;
         }
       },
-  
+      
+      // Seleccionar Artículo
       async seleccionaarticulo(articulo) {
         try {
           this.limpiarFormCli()
-          const response = await fetch('http://localhost:3000/articulos');
+          const response = await fetch('http://localhost:5000/articulos');
           if (!response.ok) {
             throw new Error('Error en la solicitud: ' + response.statusText);
           }
           const articulos = await response.json();
   
-          // Encontrar el articulo por su DNI
-          const articuloEncontrado = articulos.find(c => c.nombre === articulo.nombre);
+          // Encontrar el articulo por su ID
+          const articuloEncontrado = articulos.find(c => c._id === articulo._id);
   
   
           if (articuloEncontrado) {
@@ -209,8 +214,8 @@
   
             this.articulo = { ...articuloEncontrado };
             console.log("articulo encontrado");
-            if (this.articulo.fechaAlta) {
-              this.articulo.fechaAlta = this.articulo.fechaAlta.split('T')[0];  // Para asegurarse de que la fecha esté en formato YYYY-MM-DD
+            if (this.articulo.fecha_alta) {
+              this.articulo.fecha_alta = this.articulo.fecha_alta.split('T')[0];  // Para asegurarse de que la fecha esté en formato YYYY-MM-DD
             }
           } else {
             this.mostrarAlerta('Error', 'articulo no encontrado en el servidor.', 'error');
@@ -227,11 +232,11 @@
           nombre: '',
           categoria: '',
           descripcion: '',
-          precio: '',
-          stock: '',
+          precio_unitario: 0.00,
+          stock_disponible: 0,
           personalizacion: '',
           imagen: '',
-          fechaAlta: '',
+          fecha_alta: '',
         }
       },
   
@@ -239,27 +244,11 @@
   
       async getarticulos() {
         try {
-          const response = await fetch('http://localhost:3000/articulos');
-          if (!response.ok) {
-            throw new Error('Error en la solicitud:' + response.statusText);
-          }
-          this.articulos = (await response.json()).sort((a, b) => a.nombre.localeCompare(b.nombre) || a.nombre.localeCompare(b.nombre));
+          this.articulos = await obtenerArticulos();
         } catch (error) {
           console.error(error);
         }
       },
-      async getCategorias() {
-      try {
-        const response = await fetch('http://localhost:3000/categorias');
-        if (!response.ok) {
-          throw new Error('Error en la solicitud:' + response.statusText);
-        }
-        this.categorias = await response.json();
-      } catch (error) {
-        console.error(error);
-      }
-    },
-  
   
       mostrarAlerta(titulo, mensaje, icono) {
         Swal.fire({
@@ -274,100 +263,51 @@
         })
       },
   
-      async grabararticulo() {
-        // Verificar si los campos requeridos están llenos
-        if (this.articulo.nombre && this.articulo.categoria && this.articulo.precio&& this.articulo.stock&& this.articulo.fechaAlta) {
-          try {
-            this.articulo.fechaAlta = '';
-            // Obtener los articulos existentes
-            const response = await fetch('http://localhost:3000/articulos');
-            if (!response.ok) {
-              throw new Error('Error al obtener los articulos: ' + response.statusText);
+      // Agregar Artículo
+      async agregarArticulo(){
+            try{
+
+                if (this.articulo._id) {
+                    await actualizarArticulo(this.articulo._id, this.articulo);
+                    Swal.fire({
+                        title: 'Artículo actualizado',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                } else {
+                    const nuevoArticulo = await agregarArticulo(this.articulo);
+                    this.articulo.push(nuevoArticulo)
+                    this.limpiarFormCli();
+                    Swal.fire({
+                        title: 'Artículo agregado',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            } catch (error) {
+                console.error('Error al agregar el artículo', error);
             }
+        },
   
-            const articulosExistentes = await response.json();
-  
-            const articuloExistente = articulosExistentes.find(articulo => articulo.nombre === this.articulo.nombre);
-  
-            if (articuloExistente) {
-  
-              articuloExistente.alta = '';
-              const actualizarResponse = await fetch(`http://localhost:3000/articulos/${articuloExistente.id}`, {
-                method: 'PUT',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(articuloExistente),
-              });
-  
-              if (!actualizarResponse.ok) {
-                throw new Error('Error al actualizar el articulo: ' + actualizarResponse.statusText);
-              }
-  
-              this.mostrarAlerta('Aviso', 'articulo reactivado correctamente', 'success');
-              this.getarticulos();
-            } else {
-              const crearResponse = await fetch('http://localhost:3000/articulos', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(this.articulo),
-              });
-  
-              if (!crearResponse.ok) {
-                throw new Error('Error al guardar el articulo: ' + crearResponse.statusText);
-              }
-  
-              const nuevoarticulo = await crearResponse.json();
-              this.articulos.push(nuevoarticulo);
-              this.mostrarAlerta('Aviso', 'articulo grabado correctamente', 'success');
-              this.getarticulos();
-            }
-          } catch (error) {
-            console.error(error);
-            this.mostrarAlerta('Error', 'No se pudo grabar el articulo.', 'error');
-          }
-        } else {
-          this.mostrarAlerta('Error', 'Por favor, completa todos los campos requeridos.', 'error');
-        }
-      },
-  
-      async eliminararticulo() {
+      // Eliminar Artículo
+      async eliminararticulo(id) {
         try {
-          const response = await fetch("http://localhost:3000/articulos");
-          if (!response.ok) {
-            throw new Error("Error en la solicitud: " + response.statusText);
-          }
-  
-          const articulos = await response.json();
-          const articuloExistente = articulos.find(articulo => articulo.nombre === this.articulo.nombre);
-  
-          if (articuloExistente) {
-            await fetch(`http://localhost:3000/articulos/${articuloExistente.id}`, { // URL interpolada correctamente
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(articuloExistente),
-            });
-  
-            this.mostrarAlerta("Aviso", "articulo dado de baja correctamente", "success");
-            this.getarticulos(); // Actualizar lista de articulos
-  
-          } else {
-            this.mostrarAlerta("Error", "articulo no encontrado", "error");
-          }
+          await eliminarArticulo(id);
+          this.getarticulos()
+
         } catch (error) {
           console.error(error);
           this.mostrarAlerta("Error", "No se pudo dar de baja al articulo", "error");
         }
       },
   
+      // Modificar Artículo
       async modificararticulo() {
-        if (this.articulo.dni) {
+        if (this.articulo.nombre) {
           try {
-            const response = await fetch(`http://localhost:3000/articulos/${this.articulo.id}`, { // URL interpolada correctamente
+            const response = await fetch(`http://localhost:5000/articulos/${this.articulo.id}`, { // URL interpolada correctamente
               method: "PUT",
               headers: {
                 "Content-Type": "application/json",

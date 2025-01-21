@@ -1,5 +1,5 @@
 <template>
-    <h1>Panel de Control</h1>
+    <h3 class="font-weight-bold text-uppercase text-primary position-relative d-inline-block m-3">Panel de Control<i class="bi bi-menu-button m-2"></i></h3>
     <br>
     <br>
     <div class="botones">
@@ -10,7 +10,7 @@
         </div>
         <div class="botones-der">
             <router-link to="/empleo"><button class="btn btn-primary m-1 btn-hover1">Gestión Empleo</button></router-link><br>
-            <router-link to="/"><button class="btn btn-primary m-1 btn-hover2" disabled>En Construcción</button></router-link><br>
+            <router-link to="/articulos"><button class="btn btn-primary m-1 btn-hover2">Gestión Artículos</button></router-link><br>
             <router-link to="/"><button class="btn btn-primary m-1 btn-hover2" disabled>En Construcción</button></router-link>
         </div>
     </div>

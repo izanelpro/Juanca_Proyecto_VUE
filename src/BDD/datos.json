@@ -32969,26 +32969,6 @@
       "tipo": "usuario"
     },
     {
-      "id": "084m",
-      "dni": "45678901C",
-      "alta": "2023-10-03",
-      "apellidos": "Castro",
-      "nombre": "Isabel",
-      "direccion": "Paseo de Pereda, 9",
-      "email": "isabelcastro@example.com",
-      "telefono": "677890124",
-      "provincia": {
-        "id": "39",
-        "nm": "Cantabria"
-      },
-      "municipio": {
-        "id": "39075",
-        "nm": "Santander"
-      },
-      "baja": "",
-      "tipo": "usuario"
-    },
-    {
       "id": "085n",
       "dni": "56789012E",
       "alta": "2023-09-22",
@@ -33129,26 +33109,6 @@
       "tipo": "usuario"
     },
     {
-      "id": "6bfd",
-      "dni": "54233709P",
-      "alta": "",
-      "apellidos": "Ramirez",
-      "nombre": "Pepito",
-      "direccion": "Vigo",
-      "email": "pepito@gmail.com",
-      "provincia": {
-        "id": "36",
-        "nm": "Pontevedra"
-      },
-      "municipio": {
-        "id": "36038",
-        "nm": "Pontevedra"
-      },
-      "baja": "",
-      "telefono": "606543477",
-      "tipo": "admin"
-    },
-    {
       "id": "4174",
       "dni": "18525459V",
       "alta": "2009-12-12",
@@ -33166,6 +33126,50 @@
       },
       "baja": "26/11/2024",
       "telefono": "699986214",
+      "tipo": "usuario"
+    },
+    {
+      "id": "0096",
+      "dni": "65004204V",
+      "alta": "",
+      "apellidos": "Otero",
+      "nombre": "Ramoncito",
+      "direccion": "a",
+      "email": "ramon@gmail.com",
+      "email2": "ramon@gmail.com",
+      "provincia": {
+        "id": "01",
+        "nm": "Araba/Álava"
+      },
+      "municipio": {
+        "id": "01003",
+        "nm": "Aramaio"
+      },
+      "baja": "",
+      "telefono": "678767890",
+      "tipo": "usuario"
+    },
+    {
+      "id": "ad5a",
+      "dni": "54233709P",
+      "alta": "",
+      "apellidos": "Ram",
+      "nombre": "Izan",
+      "direccion": "A",
+      "email": "a@gmail.com",
+      "email2": "a@gmail.com",
+      "pass": "$2a$10$i/lXgo7LA98OOumWPnSr/OM2.eojVGg3pKbvxL88IdJWkSS17t3la",
+      "pass2": "1234",
+      "provincia": {
+        "id": "13",
+        "nm": "Ciudad Real"
+      },
+      "municipio": {
+        "id": "13015",
+        "nm": "Almodóvar del Campo"
+      },
+      "baja": "20/01/2025",
+      "telefono": "676545678",
       "tipo": "usuario"
     }
   ],
@@ -33400,43 +33404,5 @@
       "clienteValor": 5
     }
   ],
-  "articulos": [
-    {
-      "id": "12e8",
-      "nombre": "Lápiz",
-      "categoria": {
-        "id": "03",
-        "nm": "Ofimática"
-      },
-      "descripcion": "Gordo y grueso, perfevto para escribir",
-      "precio": 1,
-      "stock": 14,
-      "personalizacion": "",
-      "imagen": "",
-      "alta": "",
-      "fechaAlta": ""
-    }
-  ],
-  "categorias": [
-    {
-      "id": "01",
-      "nm": "Electrónica"
-    },
-    {
-      "id": "02",
-      "nm": "Hogar"
-    },
-    {
-      "id": "03",
-      "nm": "Ofimática"
-    },
-    {
-      "id": "04",
-      "nm": "Entretenimiento"
-    },
-    {
-      "id": "05",
-      "nm": "Juegos"
-    }
-  ]
+  "secret": "your_secret_key"
 }
