@@ -194,7 +194,7 @@ export default {
         }
       },
       
-      // Seleccionar Artículo
+      // Modificar Artículo
       async seleccionaarticulo(articulo) {
         try {
           this.limpiarFormCli()
@@ -264,34 +264,44 @@ export default {
       },
   
       // Agregar Artículo
-      async agregarArticulo(){
-            try{
+      async agregarArticulo() {
+  try {
+    if (this.articulo._id) {
+      // Actualizar artículo existente
+      await actualizarArticulo(this.articulo._id, this.articulo);
+      Swal.fire({
+        title: 'Artículo actualizado',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      // Agregar nuevo artículo
+      const nuevoArticulo = await agregarArticulo(this.articulo);
+      this.articulos.push(nuevoArticulo); // Corrige el push
+      this.limpiarFormCli(); // Limpia el formulario
+      Swal.fire({
+        title: 'Artículo agregado',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+    await this.getArticulos(); // Actualiza la lista tras la operación
+  } catch (error) {
+    console.error('Error al agregar/actualizar el artículo', error);
+    Swal.fire({
+      title: 'Error',
+      text: 'No se pudo completar la operación.',
+      icon: 'error',
+      showConfirmButton: true,
+    });
+  }
+}
+,
 
-                if (this.articulo._id) {
-                    await actualizarArticulo(this.articulo._id, this.articulo);
-                    Swal.fire({
-                        title: 'Artículo actualizado',
-                        icon: 'success',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                } else {
-                    const nuevoArticulo = await agregarArticulo(this.articulo);
-                    this.articulo.push(nuevoArticulo)
-                    this.limpiarFormCli();
-                    Swal.fire({
-                        title: 'Artículo agregado',
-                        icon: 'success',
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                }
-            } catch (error) {
-                console.error('Error al agregar el artículo', error);
-            }
-        },
   
-      // Eliminar Artículo
+      // Modificar Artículo
       async eliminararticulo(id) {
         try {
           await eliminarArticulo(id);
@@ -303,7 +313,6 @@ export default {
         }
       },
   
-      // Modificar Artículo
       async modificararticulo() {
         if (this.articulo.nombre) {
           try {

@@ -9,12 +9,14 @@ import TablaComentarios from '@/components/TablaComentarios.vue'
 import TablaArticulos from '@/components/TablaArticulos.vue'
 import TablaRegistro from '@/components/TablaRegistro.vue'
 import TablaLogin from '@/components/TablaLogin.vue'
+import { meta } from '@babel/eslint-parser'
 
 const routes = [
   {
     path: '/',
     name: 'inicio',
-    component: PaginaInicio
+    component: PaginaInicio,
+    meta:{ requiresAdmin: true}
   },
   {
     path: '/usuarios',
@@ -68,5 +70,7 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+router.beforeEach((to,from,nrxt))
 
 export default router
