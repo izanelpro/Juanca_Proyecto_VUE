@@ -12,7 +12,11 @@
                             <router-link to="/" class="nav-link text-white"
                                 exact-active-class="active">Inicio</router-link>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" v-if="isAdmin">
+                            <router-link to="/gestion" class="nav-link text-white"
+                                exact-active-class="active">Gestión</router-link>
+                        </li>
+                        <li class="nav-item" v-if="isAdmin">
                             <router-link to="/usuarios" class="nav-link text-white"
                                 exact-active-class="active">Usuarios</router-link>
                         </li>
@@ -21,7 +25,7 @@
                                 exact-active-class="active">Empleo</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link to="/articulos" class="nav-link text-white"
+                            <router-link to="/articulos" v-if="isAdmin" class="nav-link text-white"
                                 exact-active-class="active">Articulos</router-link>
                         </li>
                         <li class="nav-item">
@@ -42,9 +46,10 @@
                         <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-circle"></i>
                         </button>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" :class="{show: isDropdownVisible}" aria-labelledby="dropdownMenuButton">
                             <li><router-link class="dropdown-item" to="/login">Acceso</router-link></li>
                             <li><router-link class="dropdown-item" to="/registrarse">Registro</router-link></li>
+                            <li><router-link class="dropdown-item" to="#" @click="logout">Cerrar Sesión</router-link></li>
                         </ul>
                     </div>
                     
@@ -56,8 +61,31 @@
 
 <script>
 export default {
-    name: "NavBar"
-}
+    name: "NavBar",
+    data(){
+        return{
+            isDropdownVisible: false,
+            isAdmin: false,
+        };
+    },
+    mounted(){
+        this.isAdmin = localStorage.getItem('isAdmin') === 'true';
+    },
+    methods:{
+        toggleDropdown(){
+            console.log("botón pulsado");
+            this.isDropdownVisible = !this.isDropdownVisible;
+        },
+        logout(){
+            localStorage.removeItem('isLogueado');
+            localStorage.removeItem('isAdmin');
+
+            this.$router.push({name:'login'}).then(()=> {
+                window.location.reload();
+            });
+        }
+    },
+};
 </script>
 
 <style scoped>

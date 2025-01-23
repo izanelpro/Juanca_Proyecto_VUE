@@ -59,7 +59,7 @@
                 <th scope="col" class="w-20 text-center">Email</th>
                 <th scope="col" class="w-10">Mensaje</th>
                 <th scope="col" class="w-10 text-center">Valoración</th>
-                <th scope="col" class="pale-yellow table-warning">Acciones</th>
+                <th scope="col" class="pale-yellow table-warning" v-if="isAdmin">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -69,8 +69,8 @@
                 <td class="align-middle">{{ comentario.clienteEmail }}</td>
                 <td class="align-middle">{{ comentario.clienteMensaje }}</td>
                 <td class="align-middle">{{ comentario.clienteValor }}</td>
-                <td class="text-center align-middle pale-yellow table-warning">
-                  <div>
+                <td class="text-center align-middle pale-yellow table-warning" v-if="isAdmin">
+                  <div v-if="isAdmin"> 
                     <button class="btn btn-warning m-2" @click="selelccionarcomentario(comentario)">
                       <i class="fas fa-pencil-alt"></i>
                     </button>
@@ -130,7 +130,9 @@
     },
 
     mounted() {
+      this.isAdmin = localStorage.getItem('isAdmin') === 'true';
       this.getcomentarios();
+      
     },
 
     computed: {

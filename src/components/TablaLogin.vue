@@ -47,6 +47,7 @@
   <script>
   //import Swal from 'sweetalert2';
   import passport from  '../config/passport.mjs';
+  import Swal from 'sweetalert2'; 
   
   export default {
     name: "TablaLogin",
@@ -68,6 +69,18 @@
     },
 
     methods: {
+      mostrarAlerta(titulo, mensaje, icono) {
+        Swal.fire({
+          title: titulo,
+          text: mensaje,
+          icon: icono,
+          customClass: {
+            container: 'custom-alert-container',
+            popup: 'custom-alert-popup',
+            modal: 'custom-alert-modal'
+          }
+        })
+      },
 
         async getUsuarios() {
             try {
@@ -100,7 +113,15 @@
             );
   
           if (contrasenaCorrecta) {
-            this.errorMessage = ""; // Limpiar mensaje de error si las credenciales son correctas
+            if(usuario.tipo === "admin"){
+              this.errorMessage = "";
+              this.mostrarAlerta("Bienvenido","Sesión Iniciada","sucess")
+              localStorage.setItem('isLogueado','true')
+              localStorage.setItem('isAdmin','true')
+              this.$router.push({name:'inicio'}).then(()=> {
+                window.location.reload();
+              });
+            }
             alert("Inicio de sesión exitoso");
             // Redirigir o hacer algo después del inicio de sesión
           } else {

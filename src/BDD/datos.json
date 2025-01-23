@@ -33168,9 +33168,9 @@
         "id": "13015",
         "nm": "Almodóvar del Campo"
       },
-      "baja": "20/01/2025",
+      "baja": "",
       "telefono": "676545678",
-      "tipo": "usuario"
+      "tipo": "admin"
     }
   ],
   "candidatos": [
@@ -33402,6 +33402,15 @@
       "lopd": true,
       "clienteMensaje": "",
       "clienteValor": 5
+    },
+    {
+      "id": "5bbf",
+      "fechaComentario": "",
+      "clienteEmail": "i@gmail.com",
+      "clienteMovil": "678765833",
+      "lopd": true,
+      "clienteMensaje": "",
+      "clienteValor": 4
     }
   ],
   "secret": "your_secret_key"

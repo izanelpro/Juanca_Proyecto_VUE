@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import PaginaInicio from '@/components/PaginaInicio.vue'
+import TablaInicio from '@/components/PaginaInicio.vue'
+import gestion from '@/components/Gestion.vue'
 import TablaUsuarios from '@/components/TablaUsuarios.vue'
 import TablaContacto from '@/components/TablaContacto.vue'
 import TablaEmpleo from '@/components/TablaEmpleo.vue'
@@ -9,14 +10,17 @@ import TablaComentarios from '@/components/TablaComentarios.vue'
 import TablaArticulos from '@/components/TablaArticulos.vue'
 import TablaRegistro from '@/components/TablaRegistro.vue'
 import TablaLogin from '@/components/TablaLogin.vue'
-import { meta } from '@babel/eslint-parser'
-
 const routes = [
   {
     path: '/',
-    name: 'inicio',
-    component: PaginaInicio,
-    meta:{ requiresAdmin: true}
+    name:'inicio',
+    component: TablaInicio
+  },
+  {
+    path: '/gestion',
+    name: 'gestion',
+    component: gestion,
+    meta:{ requiresAdmin: false}
   },
   {
     path: '/usuarios',
@@ -55,12 +59,12 @@ const routes = [
   },
   {
     path: '/registrarse',
-    name:'TablaRegistro',
+    name:'registro',
     component: TablaRegistro
   },
   {
     path: '/login',
-    name:'TablaLogin',
+    name:'login',
     component: TablaLogin
   }
 
@@ -71,6 +75,19 @@ const router = createRouter({
   routes
 })
 
-router.beforeEach((to,from,nrxt))
+router.beforeEach((to,from,next)=>{
+  if(to.meta.requiresAdmin){
+    const isLogeado = localStorage.getItem('isLogeado') == 'true';
+    const isAdmin = localStorage.getItem('isAdmin') == 'true';
+
+    if (!isLogeado || !isAdmin){
+      next({ name: 'login'});
+    }else{
+      next();
+    }
+  }else{
+    next();
+  }
+});
 
 export default router

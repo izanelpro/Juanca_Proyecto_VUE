@@ -70,7 +70,7 @@
 
 
     
-    <div class="container my-5">
+    <div class="container my-5" v-if="isAdmin">
       <h2 class="mb-4">Lista de Datos de Candidatos</h2>
       <div class="container my-2">
         <div class="table-responsive">
@@ -161,6 +161,7 @@
     mounted() {
       this.getcandidatos();
       this.getDepartamentos();
+      this.isAdmin = localStorage.getItem('isAdmin') === 'true';
 
     },
 
