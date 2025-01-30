@@ -37,19 +37,22 @@
                                 exact-active-class="active">Contacto</router-link>
                         </li>
                     </ul>
-                    <input class="form-control me-4 w-25 ms-auto" type="search" placeholder="Buscar"
+                    <input class="form-control me-2 w-25 ms-auto" type="search" placeholder="Buscar"
                         aria-label="Search">
 
                     <button class="btn btn-outline-success bg-light" type="submit"> <i
                             class="bi bi-search"></i></button>
-                            <div class="dropdown">
+
+                    <div class="dropdown">
+
                         <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="bi bi-person-circle"></i>
                         </button>
+                        <p class="clase-user m-3" v-if="isLogueado">Bienvenido,{{usuario}}</p>
                         <ul class="dropdown-menu" :class="{show: isDropdownVisible}" aria-labelledby="dropdownMenuButton">
-                            <li><router-link class="dropdown-item" to="/login">Acceso</router-link></li>
-                            <li><router-link class="dropdown-item" to="/registrarse">Registro</router-link></li>
-                            <li><router-link class="dropdown-item" to="#" @click="logout">Cerrar Sesión</router-link></li>
+                            <li v-if="!isLogueado"><router-link class="dropdown-item" to="/login">Acceso</router-link></li>
+                            <li v-if="!isLogueado"><router-link class="dropdown-item" to="/registrarse">Registro</router-link></li>
+                            <li v-if="isLogueado || isAdmin"><router-link class="dropdown-item" to="#" @click="logout">Cerrar Sesión</router-link></li>
                         </ul>
                     </div>
                     
@@ -66,10 +69,15 @@ export default {
         return{
             isDropdownVisible: false,
             isAdmin: false,
+            isLogueado:false,
+            usuario:'' 
         };
     },
     mounted(){
         this.isAdmin = localStorage.getItem('isAdmin') === 'true';
+        this.isLogueado = localStorage.getItem('isLogueado') === 'true';
+        this.usuario = localStorage.getItem('usuario') || '';
+
     },
     methods:{
         toggleDropdown(){
@@ -79,6 +87,7 @@ export default {
         logout(){
             localStorage.removeItem('isLogueado');
             localStorage.removeItem('isAdmin');
+            console.log(this.usuario);  // Debes usar `this.usuario` para acceder a la propiedad
 
             this.$router.push({name:'login'}).then(()=> {
                 window.location.reload();
@@ -96,6 +105,11 @@ export default {
     /* Aumenta un poco el tamaño de la fuente */
     transition: font-size 0.5s ease;
     /* con una transición suave */
+
+}
+.clase-user{
+    color: white;
+    size: 10px;
 }
 
 </style>

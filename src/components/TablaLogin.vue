@@ -115,13 +115,24 @@
           if (contrasenaCorrecta) {
             if(usuario.tipo === "admin"){
               this.errorMessage = "";
-              this.mostrarAlerta("Bienvenido","Sesión Iniciada","sucess")
+              this.mostrarAlerta("Bienvenido ADMIN","Sesión Iniciada","sucess")
               localStorage.setItem('isLogueado','true')
               localStorage.setItem('isAdmin','true')
+              localStorage.setItem('usuario', usuario.nombre)
               this.$router.push({name:'inicio'}).then(()=> {
                 window.location.reload();
               });
             }
+            else if(usuario.tipo != "admin"){
+              this.errorMessage = "";
+              this.mostrarAlerta("Bienvenido","Sesión Iniciada","sucess")
+              localStorage.setItem('isLogueado','true')
+              localStorage.setItem('usuario', usuario.nombre)
+              this.$router.push({name:'inicio'}).then(()=> {
+                window.location.reload();
+              });
+            }
+           
             alert("Inicio de sesión exitoso");
             // Redirigir o hacer algo después del inicio de sesión
           } else {

@@ -33171,6 +33171,52 @@
       "baja": "",
       "telefono": "676545678",
       "tipo": "admin"
+    },
+    {
+      "id": "4d7b",
+      "dni": "00000000T",
+      "alta": "",
+      "apellidos": "Putin",
+      "nombre": "Vladimir",
+      "direccion": "a",
+      "email": "putin@gmail.com",
+      "email2": "putin@gmail.com",
+      "pass": "$2a$10$QhTmxKyc9SzRbCmBUrG4gek6LdIrteLLsCp1dHS8FFtrwi67Zn5Sm",
+      "pass2": "putin",
+      "provincia": {
+        "id": "23",
+        "nm": "Jaén"
+      },
+      "municipio": {
+        "id": "23017",
+        "nm": "Cabra del Santo Cristo"
+      },
+      "baja": "",
+      "telefono": "656789098",
+      "tipo": "admin"
+    },
+    {
+      "id": "e68d",
+      "dni": "78831986S",
+      "alta": "",
+      "apellidos": "Pintos Abreu",
+      "nombre": "Anxo",
+      "direccion": "a",
+      "email": "anxo@gmail.com",
+      "email2": "anxo@gmail.com",
+      "pass": "$2a$10$Iaii4RTy8fvy5U.tmcuKbO/0lE3a7cnuy7hF14KsnU5b5ZZLpaysW",
+      "pass2": "anxo",
+      "provincia": {
+        "id": "36",
+        "nm": "Pontevedra"
+      },
+      "municipio": {
+        "id": "36045",
+        "nm": "Redondela"
+      },
+      "baja": "",
+      "telefono": "676545678",
+      "tipo": "usuario"
     }
   ],
   "candidatos": [

@@ -1,13 +1,17 @@
 <template>
     <br>
+    
 
     <div class="row">
       <h5 class="font-weight-bold text-uppercase text-primary position-relative d-inline-block m-3">ZONA DE COMENTARIOS<i class="bi bi-chat-dots m-2"></i></h5>
       <router-link to="/" class="btn btn-customb"><i class="bi bi-arrow-return-left me-2"></i></router-link>
+      <div  v-if="!isLogueado">
+        <h3 >Necesitas iniciar sesión para escribir comentarios</h3>
+      </div>
     </div>
 
     <br>
-    <div class="container-fluid border p-4">
+    <div class="container-fluid border p-4" v-if="isLogueado || isAdmin"> 
       <!-- Formulario -->
       <form class="form-in-line">
         <div class="col-10 col-m-6 col-lg-8 mx-auto">
@@ -47,7 +51,7 @@
     </div>
 
     
-    <div class="container my-5">
+    <div class="container my-5" v-if="isLogueado || isAdmin">
       <h2 class="mb-4">TABLA DE COMENTARIOS</h2>
       <div class="container my-2">
         <div class="table-responsive">
@@ -66,7 +70,7 @@
               <tr v-for="comentario in comentarioPorPagina" :key="comentario.id">
                 <td class="align-middle">{{ comentario.id }}</td>
                 <td class="align-middle">{{ comentario.fechaComentario }}</td>
-                <td class="align-middle">{{ comentario.clienteEmail }}</td>
+                <td class="align-middle">{{ comentario.clienteEmail}}</td>
                 <td class="align-middle">{{ comentario.clienteMensaje }}</td>
                 <td class="align-middle">{{ comentario.clienteValor }}</td>
                 <td class="text-center align-middle pale-yellow table-warning" v-if="isAdmin">
@@ -123,14 +127,18 @@
           clienteValor: 1, // Valor inicial de la valoracion
         },
         comentarios: [],
+        usuarios: [],
         currentPage: 1,
         pageSize: 5,
+        isLogueado:false,
+        isAdmin:false
   
       };
     },
 
     mounted() {
       this.isAdmin = localStorage.getItem('isAdmin') === 'true';
+      this.isLogueado = localStorage.getItem('isLogueado') === 'true';
       this.getcomentarios();
       
     },
