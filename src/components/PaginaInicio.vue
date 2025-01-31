@@ -17,17 +17,28 @@
 
         <!-- Sección de Contenido -->
         <div class="content">
+            <div class="bloque">
+                <hr>
+                <h1 class="huno">Nuestro Servicio</h1>
+                <hr>
+            </div>
             <p>
                 Bienvenido a nuestra tienda, tu destino ideal para sorprender a quienes más quieres. Explora nuestra
-                selección de regalos únicos, personalizados
-                y especiales para cualquier celebración.
+                selección de regalos únicos  para cualquier celebración.
             </p>
-            <ul>
-                <li>✅ Regalos originales y personalizados</li>
-                <li>🎂 Para cumpleaños, aniversarios y más</li>
-                <li>🚚 Envío rápido y seguro</li>
-            </ul>
-            <p>✨ ¡Descubre nuestras colecciones y encuentra el detalle perfecto hoy mismo! ✨</p>
+            <div class="bloque">
+                <hr>
+                <h1 class="huno">Que ofrecemos?</h1>
+                <hr>
+            </div>
+            <div class="lista">
+                <div class="lista_p">
+                    <p>✅ Regalos originales y personalizados</p>
+                    <p>🎂 Para cumpleaños, aniversarios y más</p>
+                    <p>🚚 Envío rápido y seguro</p>
+                </div>
+                <p>✨ ¡Descubre nuestras colecciones y encuentra el detalle perfecto hoy mismo! ✨</p>
+            </div>
         </div>
     </div>
 </template>
@@ -39,6 +50,21 @@ export default {
 </script>
 
 <style>
+.bloque{
+    margin: 150px;
+}
+.lista{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.lista_p{
+    margin-bottom: 200px;
+}
+.huno{
+    color:rgb(0, 57, 172);
+    text-align: center;
+    margin:80px;
+}
 /* Contenedor titulo */
 .titulo {
     text-align: center;
@@ -61,11 +87,9 @@ video {
 
 /* Contenido con espaciado */
 .content {
-    margin-left: 22%;
     margin-top: 6%;
-    padding: 20px;
-    max-width: 650px;
+    padding: 30px;
+    max-width: auto;
     text-align: justify;
-    background-color: rgba(197, 197, 197, 0.377);
 }
 </style>
