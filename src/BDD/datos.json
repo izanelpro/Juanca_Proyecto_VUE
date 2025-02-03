@@ -33343,6 +33343,21 @@
         "id": "01",
         "nm": "Ventas"
       }
+    },
+    {
+      "id": "a234",
+      "apellidos": "LOCUELIN",
+      "nombre": "BEBESOTE",
+      "email": "a@gmail.com",
+      "movil": "657456456",
+      "modalidad": "remoto",
+      "avisoLegal": true,
+      "cv": {},
+      "comentarios": "q",
+      "departamento": {
+        "id": "03",
+        "nm": "IT"
+      }
     }
   ],
   "departamentos": [
