@@ -119,6 +119,7 @@
               localStorage.setItem('isLogueado','true')
               localStorage.setItem('isAdmin','true')
               localStorage.setItem('usuario', usuario.nombre)
+              localStorage.setItem('usuarioEmail', usuario.email);
               this.$router.push({name:'inicio'}).then(()=> {
                 window.location.reload();
               });
@@ -128,6 +129,7 @@
               this.mostrarAlerta("Bienvenido","Sesión Iniciada","sucess")
               localStorage.setItem('isLogueado','true')
               localStorage.setItem('usuario', usuario.nombre)
+              localStorage.setItem('usuarioEmail', usuario.email);
               this.$router.push({name:'inicio'}).then(()=> {
                 window.location.reload();
               });

@@ -88,4 +88,6 @@ rutas.delete('/articulos/:id', async (req, res) => {
     }   
 });
 
+//rutas.post('/subircv',)
+
 export default rutas;

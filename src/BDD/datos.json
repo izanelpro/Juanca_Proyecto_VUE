@@ -33217,6 +33217,29 @@
       "baja": "",
       "telefono": "676545678",
       "tipo": "usuario"
+    },
+    {
+      "id": "c9ee",
+      "dni": "54233710D",
+      "alta": "",
+      "apellidos": "Iglesias",
+      "nombre": "David",
+      "direccion": "Vigo",
+      "email": "david@gmail.com",
+      "email2": "david@gmail.com",
+      "pass": "$2a$10$LIcTg3N0UDST14X4KvkM7uQ0c1FzRc3NVjHOoT.GYyuNajHqqWPbC",
+      "pass2": "david",
+      "provincia": {
+        "id": "36",
+        "nm": "Pontevedra"
+      },
+      "municipio": {
+        "id": "36057",
+        "nm": "Vigo"
+      },
+      "baja": "",
+      "telefono": "656432123",
+      "tipo": "usuario"
     }
   ],
   "candidatos": [
@@ -33384,94 +33407,31 @@
   ],
   "comentarios": [
     {
-      "id": "49e8",
-      "fechaComentario": "",
-      "clienteEmail": "axel@gmail.com",
-      "clienteMovil": "675698009",
+      "id": "0963",
+      "fechaComentario": "05/02/2025",
+      "clienteEmail": "a@gmail.com",
+      "clienteMovil": "656665667",
       "lopd": true,
-      "clienteMensaje": "",
-      "clienteValor": 1
-    },
-    {
-      "id": "ac2e",
-      "fechaComentario": "",
-      "clienteEmail": "loco@gmail.com",
-      "clienteMovil": "675698009",
-      "lopd": true,
-      "clienteMensaje": "",
-      "clienteValor": 1
-    },
-    {
-      "id": "1386",
-      "fechaComentario": "",
-      "clienteEmail": "ave@gmail.com",
-      "clienteMovil": "677865489",
-      "lopd": true,
-      "clienteMensaje": "",
-      "clienteValor": 1
-    },
-    {
-      "id": "4dc8",
-      "fechaComentario": "",
-      "clienteEmail": "are@gmail.com",
-      "clienteMovil": "675456788",
-      "lopd": true,
-      "clienteMensaje": "",
-      "clienteValor": 1
-    },
-    {
-      "id": "8a4a",
-      "fechaComentario": "",
-      "clienteEmail": "eva@gmail.com",
-      "clienteMovil": "675467890",
-      "lopd": true,
-      "clienteMensaje": "",
-      "clienteValor": 1
-    },
-    {
-      "id": "7ed3",
-      "fechaComentario": "",
-      "clienteEmail": "wer",
-      "clienteMovil": "678905678",
-      "lopd": true,
-      "clienteMensaje": "",
-      "clienteValor": 1
-    },
-    {
-      "id": "513a",
-      "fechaComentario": "",
-      "clienteEmail": "r",
-      "clienteMovil": "654567889",
-      "lopd": true,
-      "clienteMensaje": "",
-      "clienteValor": 1
-    },
-    {
-      "id": "65bc",
-      "fechaComentario": "",
-      "clienteEmail": "jopjed",
-      "clienteMovil": "635298741",
-      "lopd": true,
-      "clienteMensaje": "",
-      "clienteValor": 1
-    },
-    {
-      "id": "c5bc",
-      "fechaComentario": "",
-      "clienteEmail": "35rtg",
-      "clienteMovil": "745893621",
-      "lopd": true,
-      "clienteMensaje": "",
+      "clienteMensaje": "Buena página, excelente servicio",
       "clienteValor": 5
     },
     {
-      "id": "5bbf",
-      "fechaComentario": "",
-      "clienteEmail": "i@gmail.com",
-      "clienteMovil": "678765833",
+      "id": "9244",
+      "fechaComentario": "05/02/2025",
+      "clienteEmail": "putin@gmail.com",
+      "clienteMovil": "655678987",
       "lopd": true,
-      "clienteMensaje": "",
+      "clienteMensaje": "Buen servicio",
       "clienteValor": 4
+    },
+    {
+      "id": "8cac",
+      "fechaComentario": "05/02/2025",
+      "clienteEmail": "david@gmail.com",
+      "clienteMovil": "654231234",
+      "lopd": true,
+      "clienteMensaje": "Servicio decente, emtrega justa",
+      "clienteValor": 3
     }
   ],
   "secret": "your_secret_key"
