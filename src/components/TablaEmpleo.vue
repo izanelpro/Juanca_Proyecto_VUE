@@ -56,6 +56,7 @@
             <span class="input-group-text custom-span me-2">CV(PDF): </span>
             <input type="file" class="form-control sm w-50" @change="manejarSubidaDeArchivo" />
           </div>
+
           <!-- Aceptar politica  -->
         <input type="checkbox" id="ckeckbox" v-model="candidato.avisoLegal">
         <label for="checkbox"> Acepto las condiciones y términos de la <router-link to="/avisoLegal" >Política de Privacidad</router-link></label><br>
@@ -92,7 +93,8 @@
                 <td class="align-middle">{{ candidato.nombre }}</td>
                 <td class="align-middle">{{ candidato.email }}</td>
                 <td class="align-middle">{{ candidato.movil }}</td>
-                <td class="align-middle">{{ candidato.departamento.nm }}</td>
+                <td class="align-middle">{{ candidato.departamento ? candidato.departamento.nm : 'No Departamento' }}</td>
+
 
 
                 <td class="align-middle">{{ candidato.modalidad }}</td>
@@ -153,6 +155,7 @@
         },
         candidatos: [],
         departamentos: [],
+        cvFile: null,
         currentPage: 1,
         pageSize: 5,
   
@@ -175,15 +178,10 @@
   },
 
   methods: {
-    manejarSubidaDeArchivo(evento) {
-    const archivo = evento.target.files[0]; // Obtén el primer archivo
-      if (archivo) {
-        console.log('Archivo seleccionado:', archivo); // Verifica en consola el archivo
-        this.candidato.cv = archivo; // Asigna el archivo a la propiedad 'cv'
-      } else {
-        console.log('No se ha seleccionado ningún archivo');
-      }
-  },
+    handleFileUpload(event) {
+        this.cvFile = event.target.files[0];
+      },
+  
     siguientePagina() {
       if (this.currentPage * this.pageSize < this.candidatos.length) {
         this.currentPage++;
@@ -271,69 +269,149 @@
       })
     },
 
-    
+    async estasSeguro() {
+              const result = await Swal.fire({
+                  title: "¿Estás seguro?",
+                  text: "¿Quieres actualizar este candidato?",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonText: 'Aceptar',
+                  cancelButtonText: 'Cancelar',
+                  customClass: {
+                      container: 'custom-alert-container',
+                      popup: 'custom-alert-popup',
+                      modal: 'custom-alert-modal',
+                      confirmButton: 'btn-aceptar',
+                      cancelButton: 'btn-cancelar',
+                      closeButton: 'weqweqwe'
+                  }
+              });
+  
+              // Retorna true si el usuario acepta (hace clic en "Aceptar") o false si cancela
+              return result.isConfirmed;
+          },
+
     async grabarcandidato() {
-   // Verificar si los campos requeridos están llenos
-   if (this.candidato.apellidos && this.candidato.nombre && this.candidato.email && this.candidato.movil && this.candidato.modalidad && this.candidato.avisoLegal) {
-    const resultado= await Swal.fire(
-        {
-          title:'Confirmacion',
-          html:`Seguro que desea grabar al candidato a la lista?`,
-          icon:'warning',
-          showCancelButton:true,
-          confirmButtonColor:'#d33',
-          cancelButtonColor:'rgb(0, 57, 172)',
-          confirmButtonText:'Si,añadir',
-          cancelButtonText:'Cancelar'
+  if (this.candidato.apellidos && this.candidato.nombre && this.candidato.email && this.candidato.movil && this.candidato.departamento && this.candidato.modalidad && this.candidato.avisoLegal) {
+          try {
+            const response = await fetch('http://localhost:3000/candidatos');
+            if (!response.ok) {
+              throw new Error('Error al obtener los candidatos: ' + response.statusText);
+            }
+  
+            const candidatosExistentes = await response.json();
+  
+  
+          const candidatoEncontrado = candidatosExistentes.find(c => c.movil === this.candidato.movil);
+  
+            //let candidatoExistente = candidatosExistentes.find(candidato => candidato.email === this.candidato.email);
+  
+            if (this.candidato.comentarios && this.candidato.comentarios.length > 256) {
+              throw new Error("El comentario no puede ser mayor de 256 carácteres");
+            }
+  
+            if (this.candidato.id) {
+  
+              /* if (candidatoExistente.departamento === this.candidato.departamento) {
+                throw new Error("Ya tiene una solicitud en este departamento")
+              } else {
+                this.createCandidato();
+                if (this.cvFile !== null) {
+                  this.submitFile();
+                }
+  
+              } */
+              const confirmar = await this.estasSeguro();
+  
+                          if (confirmar) {
+  
+                            const candidatoData = { ...this.candidato };
+                              // Realizar la actualización del candidato
+                              const response = await fetch(`http://localhost:3000/candidatos/${this.candidato.id}`, {
+                                  method: 'PUT',
+                                  headers: {
+                                      'Content-Type': 'application/json',
+                                  },
+                                  body: JSON.stringify(candidatoData),
+                              });
+  
+                              if (!response.ok) {
+                                  throw new Error('Error al actualizar el candidato: ' + response.statusText);
+                              }
+  
+                              this.mostrarAlerta('Aviso', 'Candidato actualizado correctamente', 'success');
+                              this.getcandidatos(); // Recargar la lista de candidatos
+                              this.limpiarFormCli();
+                          } else {
+                              this.mostrarAlerta('Aviso', 'La actualización del candidato ha sido cancelada.', 'info');
+                          }
+            } else {
+  
+              if(candidatoEncontrado){
+  
+                throw new Error("Ya tiene una solicitud asociada a este número de móvil")
+  
+              }else{
+  
+  
+              
+              this.createCandidato();
+              if (this.cvFile !== null) {
+                this.submitFile();
+                this.limpiarFormCli();
+              }
+            }}
+          } catch (error) {
+            console.error(error);
+            this.mostrarAlerta('Error', error.message, 'error');
+          }
+        } else {
+          this.mostrarAlerta('Error', 'Por favor, completa todos los campos requeridos.', 'error');
         }
-      )
-      if (!resultado.isConfirmed){
-        return;
-      }
-     try {
-       if (this.candidato.id) {
-         // Si el candidato tiene un id, significa que estamos editando
-         const response = await fetch(`http://localhost:3000/candidatos/${this.candidato.id}`, {
-           method: 'PUT',
-           headers: {
-             'Content-Type': 'application/json',
-           },
-           body: JSON.stringify(this.candidato),
-         });
-
-         if (!response.ok) {
-           throw new Error('Error al actualizar el candidato: ' + response.statusText);
-         }
-
-         this.mostrarAlerta('Aviso', 'Candidato actualizado correctamente', 'success');
-       } else {
-         // Si no tiene id, creamos un nuevo candidato
-         const response = await fetch('http://localhost:3000/candidatos', {
-           method: 'POST',
-           headers: {
-             'Content-Type': 'application/json',
-           },
-           body: JSON.stringify(this.candidato),
-         });
-
-         if (!response.ok) {
-           throw new Error('Error al crear el candidato: ' + response.statusText);
-         }
-
-         this.mostrarAlerta('Aviso', 'Candidato creado correctamente', 'success');
-       }
-
-       // Actualizamos la lista de candidatos
-       this.getcandidatos();
-
-     } catch (error) {
-       console.error(error);
-       this.mostrarAlerta('Error', 'No se pudo grabar el candidato.', 'error');
-     }
-   } else {
-     this.mostrarAlerta('Error', 'Por favor, completa todos los campos requeridos.', 'error');
-   }
-  },
+  
+      },
+      async createCandidato() {
+        const candidatoData = {
+    ...this.candidato
+    //,departamento: this.candidato.departamento.label  // Solo el id del departamento
+  };
+        const crearResponse = await fetch('http://localhost:3000/candidatos', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          
+          body: JSON.stringify(candidatoData)
+        });
+  
+        if (!crearResponse.ok) {
+          throw new Error('Error al guardar el candidato: ' + crearResponse.statusText);
+        }
+  
+        const nuevoCandidato = await crearResponse.json();
+        this.candidatos.push(nuevoCandidato);
+        this.mostrarAlerta('Aviso', 'Candidato agregado correctamente', 'success');
+        this.getcandidatos();
+      },
+   
+    async submitFile() {
+        const formdata = new FormData;
+        const candidatoId = this.candidato.movil || 'default';
+        const nuevoArchivo = new File([this.cvFile], `${candidatoId}.pdf`, { type: this.cvFile.type })
+        formdata.append("archivo", nuevoArchivo);
+        formdata.append("candidatoId", candidatoId)
+        console.log(nuevoArchivo);
+        const uploadResponse = await fetch('http://localhost:5000/subircv', {
+          method: 'POST',
+          body: formdata,
+        });
+  
+        if (!uploadResponse.ok) {
+          throw new Error('Error al subir el cv');
+        } else {
+          console.log('hubo respuesta: ', uploadResponse);
+        }
+      },
  
 
     async eliminarcandidato(candidato) {

@@ -68,6 +68,7 @@ export default {
   data() {
     return {
       articulos: [],
+      carrito: JSON.parse(localStorage.getItem('carrito')) || [],
       
       currentPage: 1,
       pageSize: 5, //registros por página
@@ -121,38 +122,15 @@ export default {
       },
       
       // Modificar Artículo
-      async agregar_carrito(articulo) {
-        if(this.isLogued){
-            try {
-              this.limpiarFormCli()
-              const response = await fetch('http://localhost:5000/articulos');
-              if (!response.ok) {
-                throw new Error('Error en la solicitud: ' + response.statusText);
-              }
-              const articulos = await response.json();
-      
-              // Encontrar el articulo por su ID
-              const articuloEncontrado = articulos.find(c => c._id === articulo._id);
-      
-      
-              if (articuloEncontrado) {
-                // Convertir la fecha de alta al formato dd/mm/yyyy
-                // Asignar el objeto completo de provincia y municipio
-      
-                this.articulo = { ...articuloEncontrado };
-                console.log("articulo encontrado");
-                if (this.articulo.fecha_alta) {
-                  this.articulo.fecha_alta = this.articulo.fecha_alta.split('T')[0];  // Para asegurarse de que la fecha esté en formato YYYY-MM-DD
-                }
-              } else {
-                this.mostrarAlerta('Error', 'articulo no encontrado en el servidor.', 'error');
-              }
-            } catch (error) {
-            console.error(error);
-            this.mostrarAlerta('Error', 'No se pudo cargar el articulo desde el servidor.', 'error');
-            }
-          }
-      },
+      agregar_carrito(articulo) {
+      if (this.isLogued) {
+        this.carrito.push(articulo);
+        localStorage.setItem('carrito', JSON.stringify(this.carrito));
+        Swal.fire('Añadido', `${articulo.nombre} ha sido añadido al carrito!`, 'success');
+      } else {
+        Swal.fire('Error', 'Debes iniciar sesión para agregar productos al carrito.', 'error');
+      }
+    },
       async getarticulos() {
         try {
           this.articulos = await obtenerArticulos();

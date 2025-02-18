@@ -33345,26 +33345,12 @@
       "nombre": "Leo",
       "email": "leo@gmail.com",
       "movil": "675466587",
-      "modalidad": "hibrido",
+      "modalidad": "remoto",
       "avisoLegal": true,
       "comentarios": "Cristiano mierda",
       "departamento": {
         "id": "02",
         "nm": "Compras"
-      }
-    },
-    {
-      "id": "927a",
-      "apellidos": "a",
-      "nombre": "aaaa",
-      "email": "a@gmail.com",
-      "movil": "678906547",
-      "modalidad": "remoto",
-      "avisoLegal": true,
-      "comentarios": "",
-      "departamento": {
-        "id": "01",
-        "nm": "Ventas"
       }
     },
     {
@@ -33380,6 +33366,175 @@
       "departamento": {
         "id": "03",
         "nm": "IT"
+      }
+    },
+    {
+      "id": "1268",
+      "apellidos": "Ramir",
+      "nombre": "Isan",
+      "email": "aw@gmail.com",
+      "movil": "657876576",
+      "modalidad": "remoto",
+      "avisoLegal": true,
+      "cv": {},
+      "comentarios": "lala",
+      "departamento": {
+        "id": "02",
+        "nm": "Compras"
+      }
+    },
+    {
+      "id": "d432",
+      "apellidos": "Chocolatero",
+      "nombre": "PaquitoTOTO",
+      "email": "a@gmail.com",
+      "movil": "657564787",
+      "modalidad": "remoto",
+      "avisoLegal": true,
+      "cv": {},
+      "comentarios": "w",
+      "departamento": {
+        "id": "01",
+        "nm": "Ventas"
+      }
+    },
+    {
+      "id": "febc",
+      "apellidos": "dwqd",
+      "nombre": "dqwdqd",
+      "email": "qwdqwd",
+      "movil": "675847567",
+      "departamento": {
+        "id": "02",
+        "nm": "Compras"
+      },
+      "modalidad": "remoto",
+      "comentarios": "dewqr2r"
+    },
+    {
+      "id": "155c",
+      "apellidos": "qew",
+      "nombre": "qew",
+      "email": "qwe@qwe.com",
+      "movil": "699986204",
+      "departamento": {
+        "id": "03",
+        "nm": "IT"
+      },
+      "modalidad": "remoto",
+      "comentarios": "qqew"
+    },
+    {
+      "id": "7fc8",
+      "apellidos": "fff",
+      "nombre": "getgeg",
+      "email": "g@gmail.com",
+      "movil": "654567654",
+      "departamento": {
+        "id": "03",
+        "nm": "IT"
+      },
+      "modalidad": "remoto",
+      "comentarios": "r"
+    },
+    {
+      "id": "2e2d",
+      "apellidos": "dfew",
+      "nombre": "Izan",
+      "email": "f@gmail.com",
+      "movil": "675647345",
+      "departamento": {
+        "id": "01",
+        "nm": "Ventas"
+      },
+      "modalidad": "hibrido",
+      "avisoLegal": true,
+      "comentarios": "e3"
+    },
+    {
+      "id": "963b",
+      "apellidos": "dfew",
+      "nombre": "Izan",
+      "email": "f@gmail.com",
+      "movil": "675647345",
+      "departamento": {
+        "id": "01",
+        "nm": "Ventas"
+      },
+      "modalidad": "hibrido",
+      "avisoLegal": true,
+      "comentarios": "e3"
+    },
+    {
+      "id": "4ca1",
+      "apellidos": "rr43r",
+      "nombre": "rerwer",
+      "email": "f@gmail.com",
+      "movil": "675664543",
+      "departamento": {
+        "id": "02",
+        "nm": "Compras"
+      },
+      "modalidad": "remoto",
+      "avisoLegal": true,
+      "comentarios": "we3e"
+    },
+    {
+      "id": "63ae",
+      "apellidos": "cdwf",
+      "nombre": "Loco",
+      "email": "f@gmail.com",
+      "movil": "654536456",
+      "departamento": {
+        "id": "02",
+        "nm": "Compras"
+      },
+      "modalidad": "remoto",
+      "avisoLegal": true,
+      "comentarios": "t"
+    },
+    {
+      "id": "0c88",
+      "apellidos": "RAMI",
+      "nombre": "MIPEQUEÑIN",
+      "email": "A@gmail.com",
+      "movil": "657654563",
+      "modalidad": "remoto",
+      "avisoLegal": true,
+      "cv": "",
+      "comentarios": "loco",
+      "departamento": {
+        "id": "04",
+        "nm": "Logística"
+      }
+    },
+    {
+      "id": "670d",
+      "apellidos": "PEPESITO",
+      "nombre": "Bobin",
+      "email": "baca@gmail.com",
+      "movil": "654321234",
+      "modalidad": "hibrido",
+      "avisoLegal": true,
+      "cv": "",
+      "comentarios": "loco",
+      "departamento": {
+        "id": "04",
+        "nm": "Logística"
+      }
+    },
+    {
+      "id": "4f3b",
+      "apellidos": "ee",
+      "nombre": "e",
+      "email": "a@gmail.com",
+      "movil": "654536453",
+      "modalidad": "",
+      "avisoLegal": true,
+      "comentarios": "a",
+      "departamento": {
+        "id": "02",
+        "nm": "Compras"
       }
     }
   ],

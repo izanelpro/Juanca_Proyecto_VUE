@@ -80,7 +80,7 @@ const upload = multer({
 });
 
 // Ruta para gestionar la subida de archivos
-app.post('/subircv', upload.single('archivo'), (req, res) => {
+app.post('/subircv', upload.single('cv'), (req, res) => {
       console.log('Archivo recibido:', req.file);
       console.log('Candidato ID:', req.body.candidatoId);
       if (!req.file) {
