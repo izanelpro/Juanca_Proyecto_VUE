@@ -17,6 +17,7 @@
 </template>
 
 <script>
+//ACTUALIZADO
 export default {
     name: "PaginaInicio",
     components: {}
