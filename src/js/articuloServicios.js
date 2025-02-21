@@ -76,7 +76,7 @@ export async function eliminarArticulo(id) {
         }
 
         return await response.json();
-    } catch (error) {
+    } catch (error) {                                                                                                                                                                                                                                                                                                                                
         console.error("error");
         Swal.fire("Error", "No se pudo conectar al servidor para eliminar el artículo", "error");
         throw error;
