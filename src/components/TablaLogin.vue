@@ -1,5 +1,5 @@
 <template>
-    <div>
+  <div>
     <div class="text-center my-4">
       <h5 class="font-weight-bold text-uppercase text-primary position-relative d-inline-block m-3"> <!-- Icono decorativo -->
         Iniciar sesión<i class="bi bi-box-arrow-in-right m-2"></i>
@@ -41,8 +41,30 @@
       <div v-if="errorMessage" class="alert alert-danger mt-3">
         {{ errorMessage }}
       </div>
+<br> <br>
+      <div class="row justify-content-center">
+      <!-- Bloque de Admin -->
+      <div class="col-md-5 admin card p-4 mx-2">
+        <h2 class="text-primary">ADMIN</h2>
+        <h3>DNI:</h3>
+        <p class="font-weight-bold">00000000T</p>
+        <h3>Contraseña:</h3>
+        <p class="font-weight-bold">putin</p>
+      </div>
+
+      <!-- Bloque de User -->
+      <div class="col-md-5 user card p-4 mx-2">
+        <h2 class="text-success">USER</h2>
+        <h3>DNI:</h3>
+        <p class="font-weight-bold">78831986S</p>
+        <h3>Contraseña:</h3>
+        <p class="font-weight-bold">anxo</p>
+      </div>
     </div>
-  </template>
+    <br> <br>
+  </div>
+
+</template>
   
   <script>
   //import Swal from 'sweetalert2';

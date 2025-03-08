@@ -1,220 +1,119 @@
 <template>
-    <br>
+  <div>
+      <h3 class="text-center front-weight-bold mt-4 text-primary" id="titulo">
+          <i class="bi bi-shop"></i> Tienda
+          <router-link to="/" class="text-dark">
+              <button class="btn btn-customb">
+                  <i class="bi bi-arrow-return-left"></i>
+              </button>
+          </router-link>
+      </h3>
+  </div>
 
-    <div class="row">
-      <h5 class="font-weight-bold text-uppercase text-primary position-relative d-inline-block m-3">TIENDA<i class="bi bi-person-workspace m-2"></i></h5>
-      <router-link to="/" class="btn btn-customb"><i class="bi bi-arrow-return-left me-2"></i></router-link>
-    </div>
+  <div class="container mt-5 text-start">
+      <!-- Botón para mostrar todos los artículos -->
+      <button @click="filtrarCategoria('Todos')"
+          :class="categoriaSeleccionada === 'Todos' ? 'btn btn-info m-1' : 'btn btn-outline-secondary m-1'">
+          Todos
+      </button>
 
-    <br>
-    <div class="container my-5">
-      <h2 class="mb-4">Lista de Elementos en Tienda</h2>
-      <div class="container my-2">
-        <div class="table-responsive">
+      <!-- Botones para cada categoría -->
+      <button v-for="categoria in categorias" :key="categoria" @click="filtrarCategoria(categoria)"
+          :class="categoriaSeleccionada === categoria ? 'btn btn-info m-1' : 'btn btn-outline-secondary m-1'">
+          {{ categoria }}
+      </button>
+  </div>
+
+  <div class="container mt-n1 mb-5">
+      <div class="table-responsive rounded">
           <table class="table table-striped">
-            <thead class="table-info rounded-header">
-              <tr>
-                <th scope="col" class="w-20">ID</th>
-                <th scope="col" class="w-20">Nombre</th>
-                <th scope="col" class="w-20 text-center">Descripción</th>
-                <th scope="col" class="w-10">Precio</th>
-                <th scope="col" class="w-10 text-center">Stock</th>
-                <th scope="col" class="w-10 text-center">Foto</th>
-                <th scope="col" class="pale-yellow table-warning" v-if="isLogued || isAdmin">Carrito</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="articulo in articuloPorPagina" :key="articulo._id">
-                  <td class="align-middle">{{ articulo._id.substring(0,4) }}</td>
-                  <td class="align-middle">{{ articulo.nombre }}</td>
-                  <td class="align-middle">{{ articulo.descripcion }}</td>
-                  <td class="align-middle">{{ articulo.precio_unitario }}</td>
-                  <td class="align-middle">{{ articulo.stock_disponible }}</td>
-                  <td class="align-middle">{{ articulo.imagen }}</td>
-                  <td class="text-center align-middle pale-yellow table-warning" v-if="isLogued || isAdmin">
-                    <div>
-                      <button class="btn btn-warning m-2" @click="agregar_carrito(articulo)">
-                        <i class="bi bi-cart3"></i>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-            </tbody>
+              <thead class="table-info rounded-header">
+                  <tr class="align-middle">
+                      <th scope="col" class="col-md-1 table-info">Imagen</th>
+                      <th scope="col" class="col-md-2">Nombre</th>
+                      <th scope="col" class="col-md-1">Categoría</th>
+                      <th scope="col" class="col-md-4">Descripción</th>
+                      <th scope="col" class="col-md-2">Precio</th>
+                      <th scope="col" class="col-md-4" v-if="isAdmin">Stock</th>
+                      <th scope="col" class="pale-yellow table-warning col-md-4" v-if="isLogged">Añadir al carro</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr v-for="articulo in articulosFiltrados" :key="articulo._id">
+                      <td>
+                          <img :src="`http://localhost:5000/uploads/img/${articulo.imagen_url}`"
+                              alt="Imagen del artículo" class="img-thumbnail img-thumbnail-small" />
+                      </td>
+                      <td class="align-middle">{{ articulo.nombre }}</td>
+                      <td class="align-middle">{{ articulo.categoria }}</td>
+                      <td class="align-middle">{{ articulo.descripcion }}</td>
+                      <td class="align-middle">{{ articulo.precio_unitario }} €</td>
+                      <td class="align-middle" v-if="isAdmin">{{ articulo.stock_disponible }}</td>
+                      <td class="text-center align-middle pale-yellow table-warning" v-if="isLogged" >
+                          <button class="btn btn-success m-2" @click="carritoStore.agregarAlCarrito(articulo)">
+                              <i class="bi bi-cart2" ></i>
+                          </button>
+                      </td>
+                  </tr>
+              </tbody>
           </table>
-
-          <div class="d-flex justify-content-center my-3">
-              <button class="btn btn-primary" :disable="currentPage === 1" @click="paginaAnterior">
-                <i class="bi bi-chevron-left"> </i>
-              </button>
-              <span class="mx-3 align-self-center">Página {{ currentPage }}</span>
-  
-              <button class="btn btn-secondary" :disabled="currentPage * perPage >= filtroarticulos.length"
-                @click="siguientePagina">
-                <i class="bi bi-chevron-right"></i>
-              </button>
-            </div>
-        </div>
       </div>
-    </div>
-  </template>
-  
-  <script>
-  import Swal from 'sweetalert2'; // Importar SweetAlert2
-  import { obtenerArticulos, eliminarArticulo} from '@/js/articuloServicios.js';
+  </div>
+</template>
+
+<script>
+import { obtenerArticulos } from '@/js/articuloServicios.js';
+import { useCarritoStore } from '@/store/carrito.mjs';
 
 export default {
   name: "TablaTienda",
 
+  setup(){
+      const carritoStore = useCarritoStore();
+
+      return { carritoStore };
+  },
+
   data() {
-    return {
-      articulos: [],
-      carrito: JSON.parse(localStorage.getItem('carrito')) || [],
-      
-      currentPage: 1,
-      pageSize: 5, //registros por página
-      categorias: [
-        'Electrónica',
-        'Hogar',
-        'Ofimática',
-        'Deporte',
-        'Libros',
-        'Otros'
-      ]
-    };
+      return {
+          articulos: [],
+          articulosFiltrados: [],
+          isAdmin: false,
+          isLogged: false,
+          categorias: ["Electrónica", "Hogar", "Ofimática", "Deporte", "Libros", "Otros"],
+          categoriaSeleccionada: "Todos"
+      };
   },
-
-  
   mounted() {
-    this.getarticulos();
-    this.isAdmin = localStorage.getItem('isAdmin') === 'true';
-    this.isLogued= localStorage.getItem('isLogued') === 'true';
-
+      this.obtenerArt();
+      this.isAdmin = localStorage.getItem('isAdmin') === 'true';
+      this.isLogged = localStorage.getItem('isLogueado') === 'true';
   },
-  
-  
-    computed: {
-      articuloPorPagina() {
-        const articulosFiltrados = this.filtroarticulos;
-        const indiceInicial = (this.currentPage - 1) * this.pageSize;
-        return articulosFiltrados.slice(indiceInicial, indiceInicial + this.pageSize)
-      },
-  
-      filtroarticulos() {
-        if (this.isChecked) {
-          return this.articulos;
-        } else {
-          return this.articulos.filter(articulo => !articulo.fechaAlta);
-        }
-      },
-    },
-  
-    methods: {
-      siguientePagina() {
-        if (this.currentPage * this.pageSize < this.articulos.length) {
-          this.currentPage++;
-        }
-      },
-  
-      paginaAnterior() {
-        if (this.currentPage > 1) {
-          this.currentPage--;
-        }
-      },
-      
-      // Modificar Artículo
-      agregar_carrito(articulo) {
-      if (this.isLogued) {
-        this.carrito.push(articulo);
-        localStorage.setItem('carrito', JSON.stringify(this.carrito));
-        Swal.fire('Añadido', `${articulo.nombre} ha sido añadido al carrito!`, 'success');
-      } else {
-        Swal.fire('Error', 'Debes iniciar sesión para agregar productos al carrito.', 'error');
-      }
-    },
-      async getarticulos() {
-        try {
-          this.articulos = await obtenerArticulos();
-        } catch (error) {
-          console.error(error);
-        }
-      },
-  
-      mostrarAlerta(titulo, mensaje, icono) {
-        Swal.fire({
-          title: titulo,
-          text: mensaje,
-          icon: icono,
-          customClass: {
-            container: 'custom-alert-container',
-            popup: 'custom-alert-popup',
-            modal: 'custom-alert-modal'
-          }
-        })
-      },
-  
-   
-
-
-  
-      // Modificar Artículo
-      async eliminararticulo(id) {
-        try {
-          await eliminarArticulo(id);
-          this.getarticulos()
-
-        } catch (error) {
-          console.error(error);
-          this.mostrarAlerta("Error", "No se pudo dar de baja al articulo", "error");
-        }
-      },
-  
-      async modificararticulo() {
-        if (this.articulo.nombre) {
+  methods: {
+      async obtenerArt() {
           try {
-            const response = await fetch(`http://localhost:5000/articulos/${this.articulo.id}`, { // URL interpolada correctamente
-              method: "PUT",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(this.articulo),
-            });
-  
-  
-            if (!response.ok) {
-              throw new Error('Error al modificar el articulo:' + response.statusText);
-            }
-            this.mostrarAlerta("Aviso", "articulo modificado correctamente", "success");
-            this.getarticulos();
-  
+              this.articulos = await obtenerArticulos();
+              this.articulosFiltrados = this.articulos;
           } catch (error) {
-            console.error(error);
+              console.error('Error al obtener los artículos', error);
           }
-        } else {
-          this.mostrarAlerta('Error', 'Debe seleccionar un articulo para modificar', 'error')
-        }
       },
-  
-  
-    },
-    
-      async prueba() {
-  
-      },
+      filtrarCategoria(categoria) {
+          this.categoriaSeleccionada = categoria;
+          this.articulosFiltrados = this.articulos.filter(articulo =>
+              categoria === "Todos" || articulo.categoria === categoria
+          );
+      }
   }
-  
-  </script>
-  
-  <style scoped>
-  .custom-date-input {
-    width: 12em;
-    text-align: center;
+};
+</script>
+
+<style scoped>
+  .mt-n1 {
+      margin-top: -0.40rem !important;
   }
-  .btn-primary:hover{
-    color: white;
-    border: 1px solid rgb(20, 122, 255);
-    background-color: rgb(0, 57, 172);
+
+  .ms-n1 {
+      margin-left: -0.1rem ;
   }
-  .btn-warning:hover{
-    background-color: rgb(255, 166, 0);
-  }
-  </style>
+</style>

@@ -1,30 +1,30 @@
-import {createStore} from 'vuex'
+import { createStore } from 'vuex';
 
 export default createStore({
-    state(){
-        return {
-            isAuthenticated: false,
-        }
+  state() {
+    return {
+      isAuthenticated: false, // El estado de autenticación
+    };
+  },
+  mutations: {
+    login(state) {
+      state.isAuthenticated = true;
     },
-    mutations: {
-        login(state){
-            state.isAuthenticated = true;
-        },
-        logout(state){
-            state.isAuthenticated = false;
-        },
+    logout(state) {
+      state.isAuthenticated = false;
     },
-    actions: {
-        login({commit}){
-            commit('login');
-        },
-        logout({commit}){
-            commit('logout')
-        },
+  },
+  actions: {
+    login({ commit }) {
+      commit('login');
     },
-    getters: {
-        isAuthenticated(state){
-            return state.isAuthenticated;
-        },
+    logout({ commit }) {
+      commit('logout');
     },
+  },
+  getters: {
+    isAuthenticated(state) {
+      return state.isAuthenticated;
+    },
+  },
 });
