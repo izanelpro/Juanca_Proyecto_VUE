@@ -6,7 +6,7 @@ import multer from 'multer';
 import Stripe from 'stripe';
 import 'dotenv/config';
 import nodemailer from 'nodemailer';
-
+//XD
 console.log(Articulo)
 
 const rutas = express.Router();
@@ -227,7 +227,7 @@ rutas.post('/enviar-correo', (req, res) => {
 
     const mailOptions = {
         from: email,
-        to: 'pablomartinezclavero@gmail.com', // aquí pones una dirección existente para probar
+        to: 'izanlage161005@gmail.com', // aquí pones una dirección existente para probar
         subject: 'Mensaje de contacto',
         text: `Nombre: ${nombre}\nTeléfono: ${telefono}\nEmail: ${email}\nMensaje: ${mensaje}`
     };

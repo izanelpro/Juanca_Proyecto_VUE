@@ -63,7 +63,7 @@
 
 <script>
 import { obtenerArticulos } from '@/js/articuloServicios.js';
-import { useCarritoStore } from '@/store/carrito.mjs';
+import { useCarritoStore } from '@/store/carrito';
 
 export default {
   name: "TablaTienda",

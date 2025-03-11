@@ -28,8 +28,10 @@ export async function agregarArticulo(datosArticulo) {
         });
 
         if (!response.ok) {
-            Swal.fire("Error", "No se pudo agregar el artículo", "error");
-            throw new Error("Error al agregar el artículo");
+            const errorText = await response.text();
+            console.error("Error al agregar el artículo:", response.status, errorText);
+            Swal.fire("Error", `No se pudo agregar el artículo: ${errorText}`, "error");
+            throw new Error(`Error al agregar el artículo: ${errorText}`);
         }
 
         return await response.json();
