@@ -38,6 +38,47 @@ server.listen(app.get('port'), () => {
     console.log(`Servidor escuchando en el puerto ${app.get('port')}`);
 });
 
+
+app.post('/crear-checkout-session', async (req, res) => {
+    try {
+        const { items, amount } = req.body; // La cantidad que se va a pagar (en centavos)
+
+        if (!items || !Array.isArray(items) || items.length === 0) {
+            return res.status(400).json({ message: 'Debe enviar al menos un producto a pagar' });
+        }
+
+        if (!amount || isNaN(amount) || amount <= 0) {
+            return res.status(400).json({ message: 'Debe enviar un monto válido a pagar' });
+        }
+
+        const lineItems = items.map(item => ({
+            price_data: {
+                currency: 'eur',
+                product_data: {
+                    name: item.nombre,
+                },
+                unit_amount: item.precio_unitario * 100,
+              },
+              quantity: item.cantidad,
+        }));
+        
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            line_items: lineItems,
+            mode: 'payment',
+            success_url: 'http://localhost:8080/success',
+            cancel_url: 'http://localhost:8080/cancel',
+        });
+
+        res.json({ id: session.id });
+    } catch (error) {
+        console.error('Error al crear la sesión de pago:', error);
+        res.status(500).json({ message: 'Error al crear la sesión de pago' });
+    }
+});
+
+
+
 // Conectar a MongoDB
 mongoose.connect('mongodb://admin:abc123@localhost:27017/bbdd?authSource=admin')
     .then(() => console.log('Conectado a MongoDB'))
