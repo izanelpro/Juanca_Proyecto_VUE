@@ -33536,6 +33536,33 @@
         "id": "02",
         "nm": "Compras"
       }
+    },
+    {
+      "id": "20f9",
+      "apellidos": "PUTADA",
+      "nombre": "LOCA",
+      "email": "izanlage161005@gmail.com",
+      "movil": "657487567",
+      "modalidad": "remoto",
+      "avisoLegal": true,
+      "comentarios": "fewfewfew",
+      "departamento": {
+        "id": "01",
+        "nm": "Ventas"
+      }
+    },
+    {
+      "id": "f60a",
+      "apellidos": "RATATATATAT",
+      "nombre": "FRFRFRFRFR",
+      "email": "iz@gmail.com",
+      "movil": "655464473",
+      "departamento": {
+        "id": "02",
+        "nm": "Compras"
+      },
+      "modalidad": "remoto",
+      "comentarios": "e3e3f3f"
     }
   ],
   "departamentos": [
