@@ -1,10 +1,7 @@
 <template>
-  <br>
-
-
-  <div class="row">
-    <h5 class="font-weight-bold text-uppercase text-primary position-relative d-inline-block m-3">ZONA DE COMENTARIOS<i
-        class="bi bi-chat-dots m-2"></i></h5>
+  <div class="container text-center mt-4">
+    <h5 class="panel-title"><i
+        class="bi bi-chat-dots m-2"></i>ZONA DE COMENTARIOS</h5>
     <router-link to="/" class="btn btn-customb"><i class="bi bi-arrow-return-left me-2"></i></router-link>
     <div v-if="!isLogueado">
       <h3>Necesitas iniciar sesión para escribir comentarios</h3>
@@ -418,5 +415,17 @@ export default {
 
 .star-icon {
   margin-right: 5px;
+}
+.btn-customb {
+  position: absolute;
+  font-size: 22px;
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.btn-customb:hover {
+  color: #0056b3;
+  transform: translateX(-5px);
 }
 </style>

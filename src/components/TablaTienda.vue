@@ -1,7 +1,7 @@
 <template>
-  <div>
-      <h3 class="text-center front-weight-bold mt-4 text-primary" id="titulo">
-          <i class="bi bi-shop"></i> Tienda
+  <div class="container text-center mt-4">
+      <h3 class="panel-title">
+          <i class="bi bi-shop-window"></i> Tienda
           <router-link to="/" class="text-dark">
               <button class="btn btn-customb">
                   <i class="bi bi-arrow-return-left"></i>
@@ -116,4 +116,16 @@ export default {
   .ms-n1 {
       margin-left: -0.1rem ;
   }
+  .btn-customb {
+  position: absolute;
+  font-size: 22px;
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.btn-customb:hover {
+  color: #0056b3;
+  transform: translateX(-5px);
+}
 </style>

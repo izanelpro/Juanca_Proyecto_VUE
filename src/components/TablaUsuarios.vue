@@ -1,7 +1,6 @@
 <template>
-  <br>
-  <div class="row">
-    <h5 class="font-weight-bold text-uppercase text-primary position-relative d-inline-block m-3">GESTIÓN USUARIOS <i class="bi bi-people-fill m-2"></i></h5>
+  <div class="container text-center mt-4">
+    <h5 class="panel-title"> <i class="bi bi-people-fill m-2"></i>GESTIÓN USUARIOS</h5>
     <router-link to="/" class="btn btn-customb"><i class="bi bi-arrow-return-left me-2"></i></router-link>
   </div>
   <br>
@@ -81,7 +80,7 @@
 
   <div>
     <div class="container my-5">
-      <h2 class="mb-4">Lista de Datos de Usuarios</h2>
+      <h3 class="mb-4 text-primary"><i class="bi bi-person-lines-fill"></i> Lista de Datos de Usuario</h3>
       <div class="container my-2">
         <div class="table-responsive">
           <table class="table table-striped">
@@ -555,6 +554,16 @@ export default {
 </script>
 
 <style scoped>
+.panel-title {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #007bff;
+  display: inline-block;
+  padding-bottom: 5px;
+  border-bottom: 3px solid #007bff;
+  font-size: 24px;
+  margin: 10px;
+}
 .custom-date-input {
   width: 12em;
   text-align: center;
@@ -566,5 +575,18 @@ export default {
 }
 .btn-warning:hover{
   background-color: rgb(255, 166, 0);
+}
+
+.btn-customb {
+  position: absolute;
+  font-size: 22px;
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.btn-customb:hover {
+  color: #0056b3;
+  transform: translateX(-5px);
 }
 </style>

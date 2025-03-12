@@ -1,14 +1,12 @@
 <template>
-    <br>
-    <div class="row">
-      
-      <h5 class="font-weight-bold text-uppercase text-primary position-relative d-inline-block m-3">REGISTRO USUARIOS<i class="bi bi-box-arrow-right m-2"></i></h5>
-      <router-link to="/" class="btn btn-customb"><i class="bi bi-arrow-return-left me-2"></i></router-link>
+    <div class="container text-center mt-4">
+      <h5 class="panel-title"><i
+        class="bi bi-box-arrow-in-right m-2"></i>REGISTRARSE</h5>
+    <router-link to="/tienda" class="btn btn-customb"><i class="bi bi-arrow-return-left me-2"></i></router-link>
     </div>
-    <br>
   
     <div class="container-fluid border p-4">
-      <form class="form-in-line">
+      <form class="form_reg">
         <div class="col-10 col-m-6 col-lg-8 mx-auto">
           <div class="input-group-text mb-3">
             <span class="input-group-text custom-span me-2">DNI/NIE:</span>
@@ -437,4 +435,24 @@
   .btn-warning:hover{
     background-color: rgb(255, 166, 0);
   }
+  .form_reg {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    padding:15px;
+    border-radius: 5px;
+    box-shadow: inset 0 0 6px rgba(0, 2, 94, 0.44);
+}
+.btn-customb {
+  position: absolute;
+  font-size: 22px;
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.btn-customb:hover {
+  color: #0056b3;
+  transform: translateX(-5px);
+}
   </style>

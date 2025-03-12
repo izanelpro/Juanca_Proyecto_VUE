@@ -1,4 +1,9 @@
 <template>
+    <div class="container text-center mt-4">
+      <h5 class="panel-title"><i
+        class="bi bi-telephone"></i>CONTACTO</h5>
+    <router-link to="/tienda" class="btn btn-customb"><i class="bi bi-arrow-return-left me-2"></i></router-link>
+    </div>
     <div>
         <form @submit.prevent="enviarCorreo">
             <div class="form-group">
@@ -79,7 +84,7 @@ export default {
 
 </script>
 
-<style scoped>asda
+<style scoped>
 .form-control:focus {
     border-color: #80bdff;
     box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
@@ -109,5 +114,26 @@ export default {
 
 .shadow-sm {
     box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+}
+
+.btn-customb {
+  position: absolute;
+  font-size: 22px;
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.btn-customb:hover {
+  color: #0056b3;
+  transform: translateX(-5px);
+}
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    padding:20px;
+    border-radius: 5px;
+    box-shadow: inset 0 0 6px rgba(0, 2, 94, 0.44);
 }
 </style>

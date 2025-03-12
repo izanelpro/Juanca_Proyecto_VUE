@@ -1,11 +1,12 @@
 <template>
-    <div class="container">
+    <div class="container text-center mt-4">
         <!-- Titulo -->
-        <div class="titulo">
-            <h4 class="font-weight-bold text-uppercase text-primary position-relative d-inline-block m-3">
-                INICIO<i class="bi bi-house-door-fill m-2"></i>
-            </h4>
-            <h5>Bienvenido a nuestra página web</h5>
+        <div class="panel_title">
+        <h4 class="panel-title">
+         <i class="bi bi-house-door-fill"></i>INICIO
+      </h4>
+      <br>
+      <h5 class="subtitulo">Bienvenido a nuestra página web</h5>
         </div>
         <!-- Sección del Video -->
         <div class="video-container">
@@ -50,6 +51,23 @@ export default {
 </script>
 
 <style>
+/* Título del Panel */
+.panel-title {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #007bff;
+  display: inline-block;
+  padding-bottom: 5px;
+  border-bottom: 3px solid #007bff;
+  font-size: 24px;
+  margin: 10px;
+}
+
+.subtitulo {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 20px;
+}
 .bloque{
     margin: 150px;
 }
@@ -64,10 +82,6 @@ export default {
     color:rgb(0, 57, 172);
     text-align: center;
     margin:80px;
-}
-/* Contenedor titulo */
-.titulo {
-    text-align: center;
 }
 
 /* Contenedor del video */

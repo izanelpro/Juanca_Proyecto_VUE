@@ -1,6 +1,8 @@
 <template>
-    <div class="container mt-4">
-      <h2 class="mb-4">Carrito de Compras</h2>
+    <div class="container text-center mt-4">
+      <h5 class="panel-title"><i
+        class="bi bi-cart4"></i>CARRITO</h5>
+    <router-link to="/tienda" class="btn btn-customb"><i class="bi bi-arrow-return-left me-2"></i></router-link>
       <div v-if="carritoStore.carrito.length === 0" class="alert alert-info">
         <p>El carrito está vacío.</p>
       </div>
@@ -124,4 +126,16 @@
     height: auto;
     display: block;
   }
+  .btn-customb {
+  position: absolute;
+  font-size: 22px;
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.btn-customb:hover {
+  color: #0056b3;
+  transform: translateX(-5px);
+}
   </style>

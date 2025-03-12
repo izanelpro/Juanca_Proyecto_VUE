@@ -1,9 +1,8 @@
 <template>
-  <div class="">
-    <h3 class="text-center front-weight-bold mt-4 text-primary" id="titulo"><i class="bi bi-person-vcard"></i> TRABAJA
+  <div class="container text-center mt-4">
+    <h3 class="panel-title"><i class="bi bi-person-vcard"></i> TRABAJA
       CON NOSOTROS
-      <router-link to="/" class="text-dark"><button class="btn btn-customb"><i
-            class="bi bi-arrow-return-left"></i></button></router-link>
+      <router-link to="/" class="btn btn-customb"><i class="bi bi-arrow-return-left me-2"></i></router-link>
     </h3>
   </div>
   <br>
@@ -78,7 +77,7 @@
 
   <div v-if="isAdmin">
     <div class="container my-5">
-      <h3 class="mb-4 text-primary"><i class="bi bi-tools"></i> Lista de Candidatos</h3>
+      <h3 class="mb-4 text-primary"><i class="bi bi-person-raised-hand"></i> Lista de Candidatos</h3>
       <div class="container my-2">
         <div class="table-responsive">
           <table class="table table-striped">
@@ -93,25 +92,36 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="candidato in candidatos" :key="candidato.id">
-                <td class="align-middle">{{ candidato.apellidos }}</td>
-                <td class="align-middle text-start">{{ candidato.nombre }}</td>
-                <td class="align-middle">{{ candidato.movil }}</td>
-                <td class="align-middle">{{ candidato.departamento.nm }}</td>
-                <td class="align-middle">{{ candidato.modalidad }}</td>
-                <td class="text-center align-middle pale-yellow table-warning">
-                  <div>
-                    <button class="btn btn-warning m-2" @click="seleccionaCandidato(candidato)">
-                      <i class="fas fa-pencil-alt"></i>
-                    </button>
-                    <button class="btn btn-danger m-2" @click="deleteCandidato(candidato.id)">
-                      <i class="bi bi-trash"></i>
-                    </button>
-                  </div>
-                </td>
-              </tr>
+              <tr v-for="candidato in candidatoPorPagina" :key="candidato.id">
+    <td class="align-middle">{{ candidato.apellidos }}</td>
+    <td class="align-middle text-start">{{ candidato.nombre }}</td>
+    <td class="align-middle">{{ candidato.movil }}</td>
+    <td class="align-middle">{{ candidato.departamento.nm }}</td>
+    <td class="align-middle">{{ candidato.modalidad }}</td>
+    <td class="text-center align-middle pale-yellow table-warning">
+      <div>
+        <button class="btn btn-warning m-2" @click="seleccionaCandidato(candidato)">
+          <i class="fas fa-pencil-alt"></i>
+        </button>
+        <button class="btn btn-danger m-2" @click="deleteCandidato(candidato.id)">
+          <i class="bi bi-trash"></i>
+        </button>
+      </div>
+    </td>
+  </tr>
             </tbody>
           </table>
+          <div class="d-flex justify-content-center my-3">
+             <button class="btn btn-primary" :disable="currentPage === 1" @click.prevent="paginaAnterior">
+               <i class="bi bi-chevron-left"> </i>
+             </button>
+             <span class="mx-3 align-self-center">Página {{ currentPage }}</span>
+ 
+             <button class="btn btn-secondary" :disabled="currentPage * perPage >= this.candidatos.length"
+               @click.prevent="siguientePagina">
+               <i class="bi bi-chevron-right"></i>
+             </button>
+           </div>
 
 
         </div>
@@ -144,7 +154,9 @@ export default {
       editMovil: false,
       candidatos: [],
       departamentos: [],
-      isAdmin: false
+      isAdmin: false,
+      currentPage: 1,
+      pageSize: 5,
     }
   },
 
@@ -154,7 +166,27 @@ export default {
     this.isAdmin = localStorage.getItem('isAdmin') === 'true';
   },
 
+  computed: {
+     candidatoPorPagina() {
+       const candidatosFiltrados = this.candidatos;
+       const indiceInicial = (this.currentPage - 1) * this.pageSize;
+       return candidatosFiltrados.slice(indiceInicial, indiceInicial + this.pageSize);
+     },
+   },
+
   methods: {
+
+    siguientePagina() {
+       if (this.currentPage * this.pageSize < this.candidatos.length) {
+         this.currentPage++;
+       }
+     },
+ 
+     paginaAnterior() {
+       if (this.currentPage > 1) {
+         this.currentPage--;
+       }
+     },
     limpiarFormCand() {
       this.candidato = {
         apellidos: '',
@@ -404,4 +436,17 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.btn-customb {
+  position: absolute;
+  font-size: 22px;
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.btn-customb:hover {
+  color: #0056b3;
+  transform: translateX(-5px);
+}
+</style>

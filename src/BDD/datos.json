@@ -33563,6 +33563,19 @@
       },
       "modalidad": "remoto",
       "comentarios": "e3e3f3f"
+    },
+    {
+      "id": "d288",
+      "apellidos": "CHAMAKO",
+      "nombre": "Alfonso",
+      "email": "chamako@gmail.com",
+      "movil": "656543456",
+      "departamento": {
+        "id": "02",
+        "nm": "Compras"
+      },
+      "modalidad": "remoto",
+      "comentarios": "Hola soy chamako"
     }
   ],
   "departamentos": [

@@ -1,9 +1,8 @@
 <template>
-  <div class="">
-      <h3 class="text-center front-weight-bold mt-4 text-primary" id="titulo"><i class="bi bi-box-seam"></i>
+  <div class="container text-center mt-4">
+      <h3 class="panel-title"><i class="bi bi-box-seam"></i>
           GESTIÓN DE ARTICULOS
-          <router-link to="/" class="text-dark"><button class="btn btn-customb"><i
-                      class="bi bi-arrow-return-left"></i></button></router-link>
+          <router-link to="/" class="btn btn-customb"><i class="bi bi-arrow-return-left me-2"></i></router-link>
       </h3>
   </div>
   <br />
@@ -337,5 +336,17 @@ export default {
 
 .star-icon {
   margin-right: 5px;
+}
+.btn-customb {
+  position: absolute;
+  font-size: 22px;
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.btn-customb:hover {
+  color: #0056b3;
+  transform: translateX(-5px);
 }
 </style>

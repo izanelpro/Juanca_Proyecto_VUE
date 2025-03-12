@@ -1,11 +1,9 @@
 <template>
   <div>
-    <div class="text-center my-4">
-      <h5 class="font-weight-bold text-uppercase text-primary position-relative d-inline-block m-3"> <!-- Icono decorativo -->
-        Iniciar sesión<i class="bi bi-box-arrow-in-right m-2"></i>
-      </h5>
-      <br>
-      <router-link to="/" class="btn btn-customb"> <i class="bi bi-arrow-return-left me-2"></i></router-link>
+    <div class="container text-center mt-4">
+      <h5 class="panel-title"><i
+        class="bi bi-box-arrow-in-right m-2"></i>INICIAR SESIÓN</h5>
+    <router-link to="/tienda" class="btn btn-customb"><i class="bi bi-arrow-return-left me-2"></i></router-link>
     </div>
   
     <form @submit.prevent="iniciarSesion">
@@ -175,6 +173,25 @@
     max-width: 400px;
     margin-top: 50px;
   }
+  form {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    padding:20px;
+    border-radius: 5px;
+    box-shadow: inset 0 0 6px rgba(0, 2, 94, 0.44);
+}
+.btn-customb {
+  position: absolute;
+  font-size: 22px;
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.btn-customb:hover {
+  color: #0056b3;
+}
   </style>
   
   
