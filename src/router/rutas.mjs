@@ -1,5 +1,5 @@
 import express from 'express';
-import Articulo from '../modelos/modelos.js';
+import Articulo  from '../modelos/modelos.js';
 import mongoose  from 'mongoose';
 import path from 'path';
 import multer from 'multer';
@@ -96,7 +96,7 @@ rutas.get('/articulos', async (req, res) => {
 
 rutas.post('/articulos', async (req, res) => {
     try{
-        const articulo = new Articulo(req.body);
+        const articulo = new Articulo.default(req.body);
         await articulo.save();
         res.status(201).json(articulo);
         console.log("Artículo guardado correctamente");
