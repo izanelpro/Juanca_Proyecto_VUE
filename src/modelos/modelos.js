@@ -9,6 +9,7 @@ const articuloSchema = new mongoose.Schema(
       stock_disponible: { type: Number, required: true, min: 0 },
       personalizacion: { type: String, maxlength: 128 },
       fecha_alta: { type: Date, required: true },
+      imagen_url: { type: String, required: true },
     },
     { versionKey: false }
   );

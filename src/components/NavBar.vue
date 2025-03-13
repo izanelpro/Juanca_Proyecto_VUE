@@ -37,13 +37,13 @@
                                 exact-active-class="active">Tienda</router-link>
                         </li>
                         <li class="nav-item">
-                            <router-link to="/cart" class="nav-link text-white"
-                                exact-active-class="active">Carrito</router-link>
-                        </li>
-                        <li class="nav-item">
                             <router-link to="/contacto" class="nav-link text-white"
                                 exact-active-class="active">Contacto</router-link>
                         </li>
+                        <router-link to="/cart" exact-active-class="active">
+                            <button class="btn btn-carrito"> <i
+                                    class="bi bi-cart4"></i></button>
+                        </router-link>
                     </ul>
                     <input class="form-control me-2 w-25 ms-auto" type="search" placeholder="Buscar"
                         aria-label="Search">
@@ -118,6 +118,22 @@ export default {
 .clase-user{
     color: white;
     size: 10px;
+}
+.btn-carrito {
+    color: white; /* White text color */
+    border: none; /* Remove default border */
+    padding: 10px 15px; /* Padding for the button */
+    font-size: 18px; /* Increase font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.btn-carrito:hover {
+    color: rgb(204, 204, 204);
+}
+
+.btn-carrito i {
+    margin-right: 5px; /* Space between icon and text */
 }
 
 </style>

@@ -16,7 +16,6 @@ export async function obtenerArticulos() {
         throw error;
     }
 }
-
 export async function agregarArticulo(datosArticulo) {
     try {
         const response = await fetch(API_URL, {
@@ -27,14 +26,26 @@ export async function agregarArticulo(datosArticulo) {
             body: JSON.stringify(datosArticulo),
         });
 
+        const data = await response.json();
+
+        datosArticulo.imagen_url = `${data._id}.${datosArticulo.imagen_url}`;
+
+        const response2 = await fetch(`${API_URL}/${data._id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(datosArticulo),
+        });
+
+        console.log(response2)
+
         if (!response.ok) {
-            const errorText = await response.text();
-            console.error("Error al agregar el artículo:", response.status, errorText);
-            Swal.fire("Error", `No se pudo agregar el artículo: ${errorText}`, "error");
-            throw new Error(`Error al agregar el artículo: ${errorText}`);
+            Swal.fire("Error", "No se pudo agregar el artículo", "error");
+            throw new Error("Error al agregar el artículo");
         }
 
-        return await response.json();
+        return await response2.json();
     } catch (error) {
         console.error("Error en la solicitud:", error);
         Swal.fire("Error", "No se pudo conectar al servidor o campos vacíos", "error");
@@ -44,6 +55,7 @@ export async function agregarArticulo(datosArticulo) {
 
 export async function actualizarArticulo(id, articulo) {
     try {
+        articulo.imagen_url = `${id}.${articulo.imagen_url}`;
         const response = await fetch(`${API_URL}/${id}`, {
             method: "PUT",
             headers: {

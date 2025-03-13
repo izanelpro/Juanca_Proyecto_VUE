@@ -33576,6 +33576,19 @@
       },
       "modalidad": "remoto",
       "comentarios": "Hola soy chamako"
+    },
+    {
+      "id": "c4f8",
+      "apellidos": "MACHULO",
+      "nombre": "Jorge",
+      "email": "jorge@gmail.com",
+      "movil": "676765678",
+      "departamento": {
+        "id": "03",
+        "nm": "IT"
+      },
+      "modalidad": "remoto",
+      "comentarios": "LOL"
     }
   ],
   "departamentos": [

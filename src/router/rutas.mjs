@@ -22,7 +22,7 @@ const createStorage = (folder) => multer.diskStorage({
         cb(null, folder);  // Se define la carpeta de destino dinámicamente
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + path.extname(file.originalname));  // Nombre único para cada archivo
+        cb(null, file.originalname);  // Mantiene el nombre original
     }
 });
 
@@ -65,7 +65,8 @@ rutas.post('/subirimg', uploadImage.single('image'), (req, res) => {
     // Manejar la subida de imagen
     res.status(200).json({ message: 'Imagen subida correctamente', file: req.file });
 });
-// Ruta para gestionar la subida de archivos
+// Ruta para gestionar la subida de arc
+// hivos
 rutas.post('/subircv', uploadCV.single('archivo'), (req, res) => {
     console.log('Archivo recibido:', req.file);
     console.log('Candidato ID:', req.body.candidatoId);
