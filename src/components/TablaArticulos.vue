@@ -23,6 +23,10 @@
                             {{ categoria }}
                         </option>
                     </select>
+                    <button v-for="categoria in categorias" :key="categoria" @click="filtrarCategoria(categoria)"
+                    :class="categoriaSeleccionada === categoria ? 'btn btn-info m-1' : 'btn btn-outline-secondary m-1'">
+                    {{ categoria }}
+                </button>
 
                 </div>
                 <div class="input-group-text mb-3">
@@ -80,24 +84,24 @@
                     </thead>
                     <tbody>
                         <tr v-for="articulo in articulosPorPagina" :key="articulo.id">
-                            <td class="align-middle">{{ acortarId(articulo._id) }}</td>
-                            <td class="align-middle">{{ articulo.nombre }}</td>
-                            <td class="align-middle">{{ articulo.categoria }}</td>
-                            <td class="align-middle">{{ articulo.descripcion }}</td>
-                            <td class="align-middle">{{ articulo.precio_unitario }}</td>
-                            <td class="align-middle">{{ articulo.stock_disponible }}</td>
-                            <td class="align-middle">{{ acortarFecha(articulo.fecha_alta) }}</td>
+                                <td v-if="articulo.stock_disponible < 50" class="amarillo">{{ acortarId(articulo._id) }}</td>
+                                <td v-if="articulo.stock_disponible < 50" class="amarillo">{{ articulo.nombre }}</td>
+                                <td v-if="articulo.stock_disponible < 50" class="amarillo">{{ articulo.categoria }}</td>
+                                <td v-if="articulo.stock_disponible < 50" class="amarillo">{{ articulo.descripcion }}</td>
+                                <td v-if="articulo.stock_disponible < 50" class="amarillo">{{ articulo.precio_unitario }}</td>
+                                <td v-if="articulo.stock_disponible < 50" class="amarillo">{{ articulo.stock_disponible }}</td>
+                                <td v-if="articulo.stock_disponible < 50" class="amarillo">{{ acortarFecha(articulo.fecha_alta) }}</td>
 
-                            <td class="text-center align-middle pale-yellow table-warning">
-                                <div>
-                                    <button class="btn btn-warning m-2" @click="seleccionarArticulo(articulo._id)">
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </button>
-                                    <button class="btn btn-danger m-2" @click="eliminarArticulo(articulo._id)">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </div>
-                            </td>
+                                <td class="text-center align-middle pale-yellow table-warning">
+                                    <div>
+                                        <button class="btn btn-warning m-2" @click="seleccionarArticulo(articulo._id)">
+                                            <i class="fas fa-pencil-alt"></i>
+                                        </button>
+                                        <button class="btn btn-danger m-2" @click="eliminarArticulo(articulo._id)">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </div>
+                                </td>
                         </tr>
                     </tbody>
                 </table>
@@ -142,14 +146,8 @@ export default {
 
             image: null,
             articulos: [],
-            categorias: [
-                "Electrónica",
-                "Hogar",
-                "Ofimática",
-                "Deporte",
-                "Libros",
-                "Otros"
-            ],
+            categorias: ["Electrónica", "Hogar", "Ofimática", "Deporte", "Libros", "Otros"],
+            categoriaSeleccionada: "Todos",
             currentPage: 1,
             pageSize: 5
         };
@@ -159,7 +157,7 @@ export default {
         articulosPorPagina() {
             const indice = (this.currentPage - 1) * this.pageSize;
             return this.articulos.slice(indice, indice + this.pageSize);
-        },
+        }
     },
 
     mounted() {
@@ -167,6 +165,12 @@ export default {
     },
 
     methods: {
+        filtrarCategoria(categoria) {
+          this.categoriaSeleccionada = categoria;
+          this.articulosFiltrados = this.articulos.filter(articulo =>
+              categoria === "Todos" || articulo.categoria === categoria
+          );
+        },
         siguientePagina() {
             if (this.currentPage * this.pageSize < this.articulos.length) {
                 this.currentPage++;
@@ -343,5 +347,8 @@ export default {
 .btn-customb:hover {
     color: #0056b3;
     transform: translateX(-5px);
+}
+.amarillo{
+    background-color: #facb408c;
 }
 </style>

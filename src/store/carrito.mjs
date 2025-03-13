@@ -7,7 +7,7 @@ export const useCarritoStore = defineStore('carrito', {
 
     getters: {
         totalArticulos: (state) => state.carrito.reduce((total, item) => total + item.cantidad, 0),
-        totalPrecio: (state) => state.carrito.reduce((total, item) => total + item.precio * item.cantidad, 0)
+        totalPrecio: (state) => state.carrito.reduce((total, item) => total + item.precio * item.cantidad, 0),
     },
 
     actions: {

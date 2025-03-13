@@ -60,6 +60,8 @@
                         <ul class="dropdown-menu" :class="{show: isDropdownVisible}" aria-labelledby="dropdownMenuButton">
                             <li v-if="!isLogueado"><router-link class="dropdown-item" to="/login">Acceso</router-link></li>
                             <li v-if="!isLogueado"><router-link class="dropdown-item" to="/registrarse">Registro</router-link></li>
+
+                            <li v-if="isLogueado || isAdmin"><router-link class="dropdown-item" to="/perfil" @click="perf">Perfil</router-link></li>
                             <li v-if="isLogueado || isAdmin"><router-link class="dropdown-item" to="#" @click="logout">Cerrar Sesión</router-link></li>
                         </ul>
                     </div>
@@ -81,6 +83,10 @@ export default {
             usuario:'' 
         };
     },
+    created() {
+      // Cargar los usuarios desde el archivo datos.json al crear el componente
+      this.getUsuarios();
+    },
     mounted(){
         this.isAdmin = localStorage.getItem('isAdmin') === 'true';
         this.isLogueado = localStorage.getItem('isLogueado') === 'true';
@@ -100,8 +106,24 @@ export default {
             this.$router.push({name:'login'}).then(()=> {
                 window.location.reload();
             });
+        },
+        async getUsuarios() {
+            try {
+                const response = await fetch('http://localhost:3000/usuarios');
+                if (!response.ok) {
+                    throw new Error('Error en la solicitud: ' + response.statusText);
+                }
+
+                // Obtener y ordenar usuarios por apellidos y luego por nombre
+                this.usuarios = (await response.json()).sort((a, b) =>
+                    a.apellidos.localeCompare(b.apellidos) || a.nombre.localeCompare(b.nombre)
+                );
+
+            } catch (error) {
+                    console.error(error);
+            }
+            }
         }
-    },
 };
 </script>
 

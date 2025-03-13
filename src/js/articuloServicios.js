@@ -9,6 +9,7 @@ export async function obtenerArticulos() {
             Swal.fire("Error", "No se pudo obtener el listado de artículos", "error");
             throw new Error("Error al obtener los artículos");
         }
+        
         return await response.json();
     } catch (error) {
         console.error("Error en la solicitud:", error);

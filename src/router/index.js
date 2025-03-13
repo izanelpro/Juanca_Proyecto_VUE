@@ -13,6 +13,7 @@ import TablaLogin from '@/components/TablaLogin.vue'
 import TablaTienda from '@/components/TablaTienda.vue'
 import TablaCarro from '@/components/TablaCarro.vue'
 import TablaSuccess from '@/components/TablaSuccess.vue'
+import TablaPerfil from '@/components/TablaPerfil.vue'
 const routes = [
   {
     path: '/',
@@ -83,6 +84,10 @@ const routes = [
   {path: '/success',
     name: 'success',
     component: TablaSuccess
+  },
+  {path: '/perfil',
+    name: 'perfil',
+    component: TablaPerfil
   }
 
 ]

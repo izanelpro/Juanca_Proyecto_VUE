@@ -42,7 +42,11 @@
             </tr>
           </tbody>
         </table>
-        <p class="h5">Total: {{ carritoStore.totalPrecio }}€</p>
+        Cupon descuento:<input type="text" @blur="descuento(this.Descuento.desc)" v-model="Descuento.desc"><br><br>
+        Gastos Envio:<input type="text" disabled value="0.90€"><br>
+        <p class="h5" v-if="this.Descuento.desc!='DESCUENTO'">Total: {{ carritoStore.totalPrecio }}€</p>
+        <p class="h5" v-if="this.Descuento.desc ==='DESCUENTO'">Total: {{ (carritoStore.totalPrecio)*0.1 }}€</p><br>
+        
         <div>
           <button
             class="btn btn-warning me-1"
@@ -63,11 +67,20 @@
   </template>
   
   <script>
+  import Swal from 'sweetalert2';
   import { useCarritoStore } from "@/store/carrito.mjs";
   import { loadStripe } from '@stripe/stripe-js';
   
   export default {
     name: "TablaCarrito",
+
+    data() {
+      return {
+        Descuento:{
+          desc:""
+        }
+      };
+    },
   
     setup() {
       const carritoStore = useCarritoStore();
@@ -76,9 +89,33 @@
     },
     methods: {
 
+        descuento(descuent){
+          this.Descuento.desc=descuent;
+          if(descuent==="DESCUENTO"){
+            this.mostrarAlerta("DESCUENTO BIEN");
+          }
+          else{
+            this.mostrarAlerta("DESCUENTO MAL PUESTO");
+          }
+        },
         total() {
-        return this.carritoStore.carrito.reduce((acc, item) => acc + item.precio_unitario * item.cantidad, 0).toFixed(2);
-      },
+          
+          return this.carritoStore.carrito.reduce((acc, item) => acc + item.precio_unitario * item.cantidad, 0).toFixed(2);
+          
+        },
+
+        mostrarAlerta(titulo, mensaje, icono) {
+        Swal.fire({
+        title: titulo,
+        text: mensaje,
+        icon: icono,
+        customClass: {
+          container: 'custom-alert-container',
+          popup: 'custom-alert-popup',
+          modal: 'custom-alert-modal'
+        }
+      })
+    },
 
         async finalizarPago() {
         console.log("init finalizarPago");
